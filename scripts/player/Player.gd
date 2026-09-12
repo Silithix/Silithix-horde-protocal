@@ -5,6 +5,7 @@ extends CharacterBody2D
 const MOVE_SPEED := 220.0
 const MAX_HP := 100.0
 const BASE_MAGNET_RADIUS := 80.0
+const IFRAME_DURATION := 0.55
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var hurtbox: Area2D = $Hurtbox
@@ -15,12 +16,13 @@ var max_hp: float = MAX_HP
 var magnet_radius: float = BASE_MAGNET_RADIUS
 var level: int = 1
 var xp: int = 0
-var xp_to_next: int = 5
+var xp_to_next: int = 4
 var alive: bool = true
 var _drag_active: bool = false
 var _drag_origin: Vector2 = Vector2.ZERO
 var _move_dir: Vector2 = Vector2.ZERO
 var _contact_cooldown: Dictionary = {}
+var _iframe_left: float = 0.0
 
 signal died
 signal leveled_up(new_level: int)
@@ -39,6 +41,13 @@ func _physics_process(delta: float) -> void:
 	if not alive:
 		velocity = Vector2.ZERO
 		return
+	if _iframe_left > 0.0:
+		_iframe_left = maxf(0.0, _iframe_left - delta)
+		if sprite:
+			sprite.modulate.a = 0.45 if int(_iframe_left * 20.0) % 2 == 0 else 1.0
+	else:
+		if sprite:
+			sprite.modulate.a = 1.0
 	var keys := _contact_cooldown.keys()
 	for k in keys:
 		_contact_cooldown[k] = float(_contact_cooldown[k]) - delta
@@ -87,7 +96,10 @@ func _unhandled_input(event: InputEvent) -> void:
 func apply_damage(amount: float, source: Node = null) -> void:
 	if not alive or amount <= 0.0:
 		return
+	if _iframe_left > 0.0:
+		return
 	hp = maxf(0.0, hp - amount)
+	_iframe_left = IFRAME_DURATION
 	Events.player_damaged.emit(amount, source)
 	hp_changed.emit(hp, max_hp)
 	if hp <= 0.0:
@@ -125,7 +137,7 @@ func _tick_contact_overlaps() -> void:
 		_try_contact_damage(body)
 
 func _xp_curve(lvl: int) -> int:
-	return 5 + (lvl - 1) * 3
+	return 4 + (lvl - 1) * 3
 
 func _die() -> void:
 	alive = false

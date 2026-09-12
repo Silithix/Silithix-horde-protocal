@@ -8,9 +8,10 @@ const SHARD_KNIVES := preload("res://scenes/combat/ShardKnivesWeapon.tscn")
 const LEVEL_UP_UI := preload("res://scenes/ui/LevelUpUI.tscn")
 const HUD_SCENE := preload("res://scenes/ui/RunHud.tscn")
 
-const ENEMY_CAP := 40
-const SPAWN_RADIUS := 520.0
-const SPAWN_INTERVAL := 1.2
+const ENEMY_CAP := 24
+const SPAWN_RADIUS := 560.0
+const SPAWN_INTERVAL := 2.0
+const INITIAL_DRIFTERS := 2
 
 @onready var world: Node2D = $World
 @onready var entities: Node2D = $Entities
@@ -59,7 +60,7 @@ func _ready() -> void:
 	add_child(hud)
 	hud.call("bind_player", player)
 
-	for i in 5:
+	for i in INITIAL_DRIFTERS:
 		_spawn_drifter()
 
 func _process(delta: float) -> void:

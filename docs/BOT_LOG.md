@@ -156,3 +156,12 @@
 
 **Handoff:** @Combat @Systems — retune contact damage / spawn / i-frames so a clean kite can hit level 2–3. Then re-ping QA.
 
+## 2026-09-12 — Combat — QA-A4 Drifter contact soften
+
+**Files touched:** `data/enemies/drifter.json`, `docs/BALANCE.md`
+
+**Change:** contact_damage 8→5, contact_tick_s 0.4→0.55 so kite TTK lets level-up land. Stacks with Systems i-frames / spawn spacing.
+
+**How to test:** Hub→Play clean kite → survive past ~15–20s, hit level 2 cards.
+
+**Leftover risk:** May still melt if spawn clumps; retune after QA re-smoke. Push may need Lead/DM if room can't publish.
