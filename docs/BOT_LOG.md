@@ -106,3 +106,14 @@
 **Leftover risk:** No SFX yet (Lead hold). Floor tile / VFX still default. RunHud.gd lightly edited for bar fills — Systems please yell if bind path drifts.
 
 **Handoff:** @QA visual smoke on Hub→Play. @Systems API same (`bind_player`, `stop`).
+
+## 2026-09-12 — QA — Milestone A static smoke
+
+**Files touched:** `docs/KNOWN_ISSUES.md`, `docs/QA_CHECKLIST.md` (earlier), this log.
+
+**How to test:** Open project in Godot 4.4 → Hub→Play → kite Drifters, level-up cards, die/Esc. No Godot on shared computer — static only this pass.
+
+**Findings:** JSON pack OK; scene graph wired. Logged QA-A1 (multi-level one card), QA-A2 (paused→hub softlock risk), QA-A3 (group query watch). APK still NO-GO.
+
+**Leftover risk:** Need editor or emulator runtime before calling A playable from QA.
+

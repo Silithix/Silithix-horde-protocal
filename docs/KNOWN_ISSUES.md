@@ -4,7 +4,11 @@ Log failures here before any APK go/no-go. Fix blockers. Ship with at most minor
 
 | ID | Severity | Area | Summary | Repro | Status | Owner |
 |----|----------|------|---------|-------|--------|-------|
-| — | — | — | *(none yet — project pre-Milestone A)* | — | — | — |
+| QA-A1 | Minor | Level-up | Multi-level in one XP tick only shows one card (`show_level_up` bails if `_open`) | Collect gem that crosses ≥2 levels | Open | Systems |
+| QA-A2 | Major* | Pause / Hub | `Run` Esc → `go_to_hub` never clears `get_tree().paused`. Softlock if tree is paused (e.g. abandon during level-up once Esc is wired under pause) | Level-up open + Esc/back if input reaches Run | Open | Systems / Arch |
+| QA-A3 | Perf note | Run | `_alive_enemy_count` uses `get_nodes_in_group("enemy")` on spawn tick — OK for A; fail Milestone D if left in hot path | 12-min soak | Watch | Systems |
+
+\*Major only if Esc/back can fire while paused. Currently LevelUpUI is `PROCESS_MODE_ALWAYS` and Run is not — verify on device.
 
 ## Severity
 - **Blocker** — crash, softlock, data wipe, install fail → no ship
@@ -14,5 +18,9 @@ Log failures here before any APK go/no-go. Fix blockers. Ship with at most minor
 
 ## Last audit
 - Date: 2026-09-12
-- Build: *(none)*
-- Milestone: pre-A (docs only)
+- Build: local Milestone A (no APK)
+- Method: static — no Godot binary on shared computer
+- JSON: all `data/**/*.json` parse OK
+- Scenes: Boot/Hub/Run/Player/Drifter/ShardKnives/LevelUpUI/RunHud present
+- Milestone A runtime Hub→Play: **unverified** (need editor/device)
+- APK gate: **NO-GO** until D/E
