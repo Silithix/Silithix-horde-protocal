@@ -1,0 +1,20 @@
+{
+  "id": "hellflood",
+  "name": "hellflood",
+  "display_name": "Hellflood",
+  "requires_weapon": "ignition_flask",
+  "requires_weapon_level": 5,
+  "requires_passive": "pyro_binding",
+  "requires_passive_level": 1,
+  "replaces_weapon": "ignition_flask",
+  "offer_rule": "chest_offer",
+  "behavior_notes": "Pools spread into a connected flood, longer burn, higher tick. Zone denial becomes a river Rook steers around the map.",
+  "stats_hint": {
+    "damage": 18,
+    "cooldown_s": 1.2,
+    "projectile_count": 4,
+    "area_scale": 1.8,
+    "pool_duration_s": 4.5,
+    "spread_pools": true
+  }
+}

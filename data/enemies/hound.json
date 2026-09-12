@@ -1,0 +1,23 @@
+{
+  "id": "hound",
+  "name": "hound",
+  "display_name": "Hound",
+  "tier": "trash",
+  "behavior": "seek_melee_fast",
+  "hp": 12,
+  "move_speed_px_s": 130,
+  "contact_damage": 8,
+  "contact_tick_s": 0.4,
+  "attack_type": "contact",
+  "projectile": null,
+  "telegraph_s": 0,
+  "knockback_resist": 0.0,
+  "xp_drop": "gem_small",
+  "gold_drop": 1,
+  "elite": false,
+  "red_aura": false,
+  "chest_on_death": false,
+  "color_hint": "russet",
+  "notes": "Fast melee chaser. Soft HP, high closing speed — punishes lazy circles. Introduce after Drifters so Rook learns to cut corners. Sprite placeholder: res://assets/sprites/enemies/hound.png",
+  "sprite": "res://assets/sprites/enemies/hound.png"
+}

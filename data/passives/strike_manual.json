@@ -1,0 +1,19 @@
+{
+  "id": "strike_manual",
+  "name": "strike_manual",
+  "display_name": "Strike Manual",
+  "family": "damage",
+  "rarity": "common",
+  "max_level": 5,
+  "stat": "damage",
+  "level_curve": [
+    {"level": 1, "damage_mult": 1.08},
+    {"level": 2, "damage_mult": 1.14},
+    {"level": 3, "damage_mult": 1.20},
+    {"level": 4, "damage_mult": 1.28},
+    {"level": 5, "damage_mult": 1.36}
+  ],
+  "notes": "Flat-ish damage amp for projectiles/melee hits. Evo catalyst for Pierce Lance → Whistler Bolt.",
+  "evolution_for": "whistler_bolt",
+  "icon": "res://assets/ui/icons/passives/strike_manual.png"
+}

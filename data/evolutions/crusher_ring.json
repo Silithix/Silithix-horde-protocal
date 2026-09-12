@@ -1,0 +1,18 @@
+{
+  "id": "crusher_ring",
+  "name": "crusher_ring",
+  "display_name": "Crusher Ring",
+  "requires_weapon": "orbit_blades",
+  "requires_weapon_level": 5,
+  "requires_passive": "impact_bracer",
+  "requires_passive_level": 1,
+  "replaces_weapon": "orbit_blades",
+  "offer_rule": "chest_offer",
+  "behavior_notes": "More satellites, heavier knockback — orbit becomes a crowd-control ring that shoves elites off Rook's face.",
+  "stats_hint": {
+    "damage": 28,
+    "projectile_count": 5,
+    "orbit_radius_px": 140,
+    "knockback": 160
+  }
+}

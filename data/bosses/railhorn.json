@@ -1,0 +1,30 @@
+{
+  "id": "railhorn",
+  "name": "railhorn",
+  "display_name": "Railhorn",
+  "hp": 1100,
+  "move_speed_px_s": 55,
+  "contact_damage": 16,
+  "phases": 1,
+  "weak_to": "sidestep_during_windup",
+  "patterns": [
+    {
+      "id": "line_charge",
+      "telegraph_s": 1.0,
+      "cooldown_s": 4.5,
+      "description": "Wind-up line telegraph across arena, then high-speed charge. Sidestep is the skill check."
+    },
+    {
+      "id": "shockwave_slam",
+      "telegraph_s": 0.7,
+      "cooldown_s": 6.0,
+      "description": "Stomp at end of charge or standalone — expanding ring shockwave. Jump the gap / step inside late."
+    }
+  ],
+  "intro_notes": "Clear trash beat → WARNING banner → camera punch → fight. Gold chest on kill.",
+  "chest_on_kill": "gold",
+  "xp_drop": "gem_gold",
+  "gold_drop": 50,
+  "notes": "Boss 2 (~10:00). Charge + slam — arena clamp optional. Harder pattern than Rico Bloom. Sprite placeholder: res://assets/sprites/enemies/railhorn.png",
+  "sprite": "res://assets/sprites/enemies/railhorn.png"
+}

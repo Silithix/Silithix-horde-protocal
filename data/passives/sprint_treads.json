@@ -1,0 +1,19 @@
+{
+  "id": "sprint_treads",
+  "name": "sprint_treads",
+  "display_name": "Sprint Treads",
+  "family": "mobility",
+  "rarity": "common",
+  "max_level": 5,
+  "stat": "move_speed",
+  "base_bonus": 0.08,
+  "level_curve": [
+    {"level": 1, "move_speed_mult": 1.08},
+    {"level": 2, "move_speed_mult": 1.12},
+    {"level": 3, "move_speed_mult": 1.16},
+    {"level": 4, "move_speed_mult": 1.20},
+    {"level": 5, "move_speed_mult": 1.25}
+  ],
+  "notes": "Move-speed shoes. Turns panic kites into confident circles — first pick when Hounds show up.",
+  "icon": "res://assets/ui/icons/passives/sprint_treads.png"
+}

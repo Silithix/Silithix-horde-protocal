@@ -1,0 +1,23 @@
+{
+  "id": "drift_mote",
+  "name": "drift_mote",
+  "display_name": "Drift Mote",
+  "tier": "swarm",
+  "behavior": "diagonal_drift",
+  "hp": 6,
+  "move_speed_px_s": 100,
+  "contact_damage": 5,
+  "contact_tick_s": 0.4,
+  "attack_type": "contact",
+  "projectile": null,
+  "telegraph_s": 0,
+  "knockback_resist": 0.0,
+  "xp_drop": "gem_small",
+  "gold_drop": 0,
+  "elite": false,
+  "red_aura": false,
+  "chest_on_death": false,
+  "color_hint": "pale_cyan",
+  "notes": "Tiny swarm unit on diagonal drift paths — dies to one knife, scary in dozens. Visual clutter that teaches AoE picks. Sprite placeholder: res://assets/sprites/enemies/drift_mote.png",
+  "sprite": "res://assets/sprites/enemies/drift_mote.png"
+}

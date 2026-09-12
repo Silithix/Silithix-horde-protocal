@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "xp_gems": {
+    "small_green": { "xp": 1, "color": "green", "weight_on_trash": 70 },
+    "large_green": { "xp": 3, "color": "green", "weight_on_trash": 20 },
+    "blue": { "xp": 8, "color": "blue", "weight_on_elite": 60, "weight_on_trash": 8 },
+    "gold": { "xp": 20, "color": "gold", "weight_on_elite": 30, "weight_on_boss": 100 }
+  },
+  "kill_gold": {
+    "trash": 1,
+    "elite": 8,
+    "miniboss": 25,
+    "boss": 50
+  },
+  "crate_pickups": {
+    "heal_meat": {
+      "type": "heal",
+      "amount_frac_max_hp": 0.2,
+      "feel": "chunky mid-fight save"
+    },
+    "bomb": {
+      "type": "screen_nuke",
+      "radius_px": 520,
+      "damage": 120,
+      "feel": "panic button, not a crutch"
+    },
+    "magnet": {
+      "type": "vacuum_xp",
+      "duration_sec": 0,
+      "instant": true,
+      "feel": "clear the floor"
+    },
+    "gold_bag": {
+      "type": "gold",
+      "amount": { "min": 15, "max": 35 }
+    },
+    "rare_weapon_chest": {
+      "type": "chest",
+      "rarity": "rare",
+      "offers": 1,
+      "pool": "weapon_or_passive_upgrade"
+    }
+  },
+  "chests": {
+    "silver_chest": {
+      "offers": 1,
+      "pool": ["weapon_upgrade", "passive_upgrade"],
+      "source": "elite"
+    },
+    "gold_chest": {
+      "offers": 1,
+      "pool": ["weapon_upgrade", "passive_upgrade", "evolution_if_eligible"],
+      "source": "boss_or_miniboss",
+      "evolution_priority": true
+    }
+  },
+  "magnet_passive_radius_base_px": 80
+}

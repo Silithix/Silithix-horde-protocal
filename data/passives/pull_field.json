@@ -1,0 +1,19 @@
+{
+  "id": "pull_field",
+  "name": "pull_field",
+  "display_name": "Pull Field",
+  "family": "pickup",
+  "rarity": "common",
+  "max_level": 5,
+  "stat": "pickup_radius",
+  "level_curve": [
+    {"level": 1, "pickup_radius_mult": 1.20},
+    {"level": 2, "pickup_radius_mult": 1.35},
+    {"level": 3, "pickup_radius_mult": 1.50},
+    {"level": 4, "pickup_radius_mult": 1.70},
+    {"level": 5, "pickup_radius_mult": 2.00}
+  ],
+  "notes": "XP/gem magnet radius. Evo catalyst for Return Disk → Magnet Reaver. Also just feels good mid-horde.",
+  "evolution_for": "magnet_reaver",
+  "icon": "res://assets/ui/icons/passives/pull_field.png"
+}

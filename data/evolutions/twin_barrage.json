@@ -1,0 +1,21 @@
+{
+  "id": "twin_barrage",
+  "name": "twin_barrage",
+  "display_name": "Twin Barrage",
+  "requires_weapon": "winglet_a",
+  "requires_weapon_b": "winglet_b",
+  "requires_weapon_level": 5,
+  "requires_passive": null,
+  "requires_passive_level": 0,
+  "replaces_weapon": "winglet_a",
+  "replaces_weapon_b": "winglet_b",
+  "frees_weapon_slots": 1,
+  "offer_rule": "chest_offer",
+  "behavior_notes": "Both Winglet cards at L5 (no passive). Merges into one dual-drone barrage that freestyles independent fire with overlapping volleys. Frees one weapon slot after merge.",
+  "stats_hint": {
+    "damage": 26,
+    "cooldown_s": 0.4,
+    "projectile_count": 2,
+    "drone_count": 2
+  }
+}

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://temp_seeker_hp"]
+
+[ext_resource type="Script" path="res://scripts/meta/TempSeeker.gd" id="1_seek"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/walker_placeholder.png" id="2_tex"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_body"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_contact"]
+radius = 26.0
+
+[node name="TempSeeker" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_seek")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_body")
+
+[node name="Contact" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 1
+monitoring = true
+monitorable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Contact"]
+shape = SubResource("CircleShape2D_contact")

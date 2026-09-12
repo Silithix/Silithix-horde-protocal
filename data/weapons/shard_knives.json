@@ -1,0 +1,62 @@
+{
+  "id": "shard_knives",
+  "name": "shard_knives",
+  "display_name": "Shard Knives",
+  "family": "blade",
+  "rarity": "common",
+  "max_level": 5,
+  "targeting": "nearest",
+  "base_damage": 12,
+  "cooldown_s": 0.7,
+  "projectile_count": 1,
+  "projectile_speed": 420,
+  "pierce": 0,
+  "area_scale": 1.0,
+  "knockback": 40,
+  "status_on_hit": null,
+  "level_curve": [
+    {
+      "level": 1,
+      "damage": 12,
+      "cooldown_s": 0.7,
+      "projectile_count": 1,
+      "pierce": 0,
+      "projectile_speed": 420
+    },
+    {
+      "level": 2,
+      "damage": 16,
+      "cooldown_s": 0.65,
+      "projectile_count": 1,
+      "pierce": 0,
+      "projectile_speed": 440
+    },
+    {
+      "level": 3,
+      "damage": 18,
+      "cooldown_s": 0.6,
+      "projectile_count": 2,
+      "pierce": 0,
+      "projectile_speed": 450
+    },
+    {
+      "level": 4,
+      "damage": 22,
+      "cooldown_s": 0.55,
+      "projectile_count": 2,
+      "pierce": 1,
+      "projectile_speed": 460
+    },
+    {
+      "level": 5,
+      "damage": 26,
+      "cooldown_s": 0.5,
+      "projectile_count": 3,
+      "pierce": 1,
+      "projectile_speed": 480
+    }
+  ],
+  "notes": "Starter blade throw. Snaps to nearest threat and stitches a kite path — Rook's first thirty seconds should feel like carving a lane, not carpet bombing. Short travel, no pierce at L1 so every miss teaches positioning. Sprite placeholder: res://assets/sprites/weapons/shard_knives.png",
+  "evolution_id": "spirit_whorl",
+  "icon": "res://assets/sprites/weapons/shard_knives.png"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "return_disk",
+  "name": "return_disk",
+  "display_name": "Return Disk",
+  "family": "projectile",
+  "rarity": "common",
+  "max_level": 5,
+  "targeting": "arc_return",
+  "base_damage": 14,
+  "cooldown_s": 1.1,
+  "projectile_count": 1,
+  "projectile_speed": 360,
+  "pierce": 3,
+  "area_scale": 1.0,
+  "knockback": 50,
+  "status_on_hit": null,
+  "outbound_range_px": 280,
+  "level_curve": [
+    {"level": 1, "damage": 14, "cooldown_s": 1.1, "projectile_count": 1, "pierce": 3, "outbound_range_px": 280},
+    {"level": 2, "damage": 18, "cooldown_s": 1.05, "projectile_count": 1, "pierce": 4, "outbound_range_px": 300},
+    {"level": 3, "damage": 22, "cooldown_s": 1.0, "projectile_count": 2, "pierce": 4, "outbound_range_px": 320},
+    {"level": 4, "damage": 26, "cooldown_s": 0.95, "projectile_count": 2, "pierce": 5, "outbound_range_px": 340},
+    {"level": 5, "damage": 32, "cooldown_s": 0.9, "projectile_count": 3, "pierce": 6, "outbound_range_px": 360}
+  ],
+  "notes": "Outbound arc then snap-back through the same lane — double-dip damage if trash lines up. Throw into a corridor of Drifters for the satisfying return wipe. Sprite placeholder: res://assets/sprites/weapons/return_disk.png",
+  "evolution_id": "magnet_reaver",
+  "icon": "res://assets/sprites/weapons/return_disk.png"
+}

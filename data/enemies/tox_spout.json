@@ -1,0 +1,30 @@
+{
+  "id": "tox_spout",
+  "name": "tox_spout",
+  "display_name": "Tox Spout",
+  "tier": "trash",
+  "behavior": "ranged_kite",
+  "hp": 16,
+  "move_speed_px_s": 55,
+  "contact_damage": 6,
+  "contact_tick_s": 0.4,
+  "attack_type": "projectile",
+  "projectile": {
+    "damage": 10,
+    "speed_px_s": 220,
+    "cooldown_s": 1.6,
+    "telegraph_s": 0.25,
+    "homing": false,
+    "pierce": 0
+  },
+  "telegraph_s": 0.25,
+  "knockback_resist": 0.1,
+  "xp_drop": "gem_small",
+  "gold_drop": 1,
+  "elite": false,
+  "red_aura": false,
+  "chest_on_death": false,
+  "color_hint": "purple",
+  "notes": "Mid-range spitters. 0.25s telegraph crouch then purple bolt — readable on phone. Prefer edges; force Rook to weave. Sprite placeholder: res://assets/sprites/enemies/tox_spout.png",
+  "sprite": "res://assets/sprites/enemies/tox_spout.png"
+}

@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=3 uid="uid://run_hud_hp"]
+
+[ext_resource type="Script" path="res://scripts/meta/RunHud.gd" id="1_hud"]
+
+[node name="RunHud" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_hud")
+
+[node name="Root" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Chip" type="ColorRect" parent="Root"]
+offset_left = 32.0
+offset_top = 72.0
+offset_right = 96.0
+offset_bottom = 136.0
+color = Color(0.361, 0.882, 1, 1)
+
+[node name="HpLabel" type="Label" parent="Root"]
+offset_left = 112.0
+offset_top = 72.0
+offset_right = 420.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(0.91, 0.933, 0.973, 1)
+theme_override_font_sizes/font_size = 24
+text = "HP 100 / 100"
+
+[node name="HpTrack" type="ColorRect" parent="Root"]
+offset_left = 112.0
+offset_top = 108.0
+offset_right = 472.0
+offset_bottom = 132.0
+color = Color(0.118, 0.165, 0.251, 1)
+
+[node name="HpFill" type="ColorRect" parent="Root/HpTrack"]
+offset_right = 360.0
+offset_bottom = 24.0
+color = Color(0.239, 1, 0.604, 1)
+
+[node name="Timer" type="Label" parent="Root"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 72.0
+offset_right = 100.0
+offset_bottom = 128.0
+theme_override_colors/font_color = Color(0.91, 0.933, 0.973, 1)
+theme_override_font_sizes/font_size = 40
+text = "0:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="XpLabel" type="Label" parent="Root"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -420.0
+offset_top = 72.0
+offset_right = -32.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(0.91, 0.933, 0.973, 1)
+theme_override_font_sizes/font_size = 24
+text = "Lv 1  XP 0 / 5"
+horizontal_alignment = 2
+
+[node name="XpTrack" type="ColorRect" parent="Root"]
+offset_left = 32.0
+offset_top = 152.0
+offset_right = -32.0
+offset_bottom = 164.0
+anchor_right = 1.0
+color = Color(0.118, 0.165, 0.251, 1)
+
+[node name="XpFill" type="ColorRect" parent="Root/XpTrack"]
+offset_right = 200.0
+offset_bottom = 12.0
+color = Color(0.486, 1, 0.361, 1)

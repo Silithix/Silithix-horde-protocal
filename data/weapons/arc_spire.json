@@ -1,0 +1,28 @@
+{
+  "id": "arc_spire",
+  "name": "arc_spire",
+  "display_name": "Arc Spire",
+  "family": "tech",
+  "rarity": "common",
+  "max_level": 5,
+  "targeting": "random_area",
+  "base_damage": 18,
+  "cooldown_s": 1.4,
+  "projectile_count": 2,
+  "projectile_speed": 0,
+  "pierce": 0,
+  "area_scale": 1.0,
+  "knockback": 10,
+  "status_on_hit": "slow",
+  "strike_radius_px": 55,
+  "level_curve": [
+    {"level": 1, "damage": 18, "cooldown_s": 1.4, "projectile_count": 2, "area_scale": 1.0},
+    {"level": 2, "damage": 23, "cooldown_s": 1.3, "projectile_count": 2, "area_scale": 1.1},
+    {"level": 3, "damage": 28, "cooldown_s": 1.2, "projectile_count": 3, "area_scale": 1.15},
+    {"level": 4, "damage": 34, "cooldown_s": 1.1, "projectile_count": 3, "area_scale": 1.25},
+    {"level": 5, "damage": 40, "cooldown_s": 1.0, "projectile_count": 4, "area_scale": 1.35}
+  ],
+  "notes": "Random-area bolts that slap off-screen pressure. Brief ground spark telegraph (~0.15s) so it feels authored, not RNG unfair. Softens packs while Rook kites. Sprite placeholder: res://assets/sprites/weapons/arc_spire.png",
+  "evolution_id": "storm_nest",
+  "icon": "res://assets/sprites/weapons/arc_spire.png"
+}

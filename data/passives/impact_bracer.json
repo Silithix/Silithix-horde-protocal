@@ -1,0 +1,19 @@
+{
+  "id": "impact_bracer",
+  "name": "impact_bracer",
+  "display_name": "Impact Bracer",
+  "family": "area",
+  "rarity": "common",
+  "max_level": 5,
+  "stat": "area_scale",
+  "level_curve": [
+    {"level": 1, "area_scale_mult": 1.10},
+    {"level": 2, "area_scale_mult": 1.16},
+    {"level": 3, "area_scale_mult": 1.22},
+    {"level": 4, "area_scale_mult": 1.30},
+    {"level": 5, "area_scale_mult": 1.40}
+  ],
+  "notes": "Bigger hitboxes / pools / orbit radius. Evo catalyst for Orbit Blades → Crusher Ring.",
+  "evolution_for": "crusher_ring",
+  "icon": "res://assets/ui/icons/passives/impact_bracer.png"
+}

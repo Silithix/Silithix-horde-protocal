@@ -1,0 +1,18 @@
+{
+  "id": "vital_barrier",
+  "name": "vital_barrier",
+  "display_name": "Vital Barrier",
+  "requires_weapon": "pulse_halo",
+  "requires_weapon_level": 5,
+  "requires_passive": "overclock_serum",
+  "requires_passive_level": 1,
+  "replaces_weapon": "pulse_halo",
+  "offer_rule": "chest_offer",
+  "behavior_notes": "Larger damaging ring plus a pulse heal-on-kill tick (small HP return when an enemy dies inside the aura). Stand-in-the-mess fantasy without tanking bosses.",
+  "stats_hint": {
+    "damage": 28,
+    "cooldown_s": 0.3,
+    "area_scale": 1.8,
+    "heal_on_kill": 1
+  }
+}

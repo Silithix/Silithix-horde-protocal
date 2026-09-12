@@ -1,0 +1,41 @@
+{
+  "statuses": [
+    {
+      "id": "burn",
+      "display_name": "Burn",
+      "duration_s": 2.0,
+      "tick_s": 0.5,
+      "magnitude": 3,
+      "stack_rule": "refresh_duration",
+      "notes": "Fire DoT from Ignition Flask / Hellflood. Magnitude = damage per tick. Pyro Binding extends duration_s via mult."
+    },
+    {
+      "id": "slow",
+      "display_name": "Slow",
+      "duration_s": 1.5,
+      "tick_s": 0,
+      "magnitude": 0.35,
+      "stack_rule": "refresh_duration",
+      "notes": "Move-speed multiplier reduction (magnitude 0.35 = 35% slower). Arc Spire / storm clouds apply briefly."
+    },
+    {
+      "id": "knockback",
+      "display_name": "Knockback",
+      "duration_s": 0.15,
+      "tick_s": 0,
+      "magnitude": 1.0,
+      "stack_rule": "replace",
+      "notes": "Impulse, not a lingering status. Magnitude scales weapon knockback force. Resist on plated/elites/bosses."
+    },
+    {
+      "id": "freeze",
+      "display_name": "Freeze",
+      "duration_s": 0.6,
+      "tick_s": 0,
+      "magnitude": 1.0,
+      "stack_rule": "refresh_duration_cap",
+      "max_duration_s": 1.2,
+      "notes": "Short hard-stop. Rare / boss-intro tool. Keep short so phone fights stay fluid."
+    }
+  ]
+}

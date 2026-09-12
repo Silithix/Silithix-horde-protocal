@@ -1,0 +1,556 @@
+{
+  "id": "chapter_01",
+  "name": "Protocol Breach",
+  "duration_sec": 900,
+  "win": {
+    "require_final_boss_kill": true,
+    "survive_timer": true
+  },
+  "map": {
+    "tile_set": "city_lab_floor",
+    "feel": "infinite_tiled",
+    "soft_props": true,
+    "hard_walls": false
+  },
+  "difficulty": {
+    "hp_curve": [
+      {
+        "t": 0,
+        "mult": 1.0
+      },
+      {
+        "t": 180,
+        "mult": 1.15
+      },
+      {
+        "t": 300,
+        "mult": 1.35
+      },
+      {
+        "t": 480,
+        "mult": 1.55
+      },
+      {
+        "t": 600,
+        "mult": 1.8
+      },
+      {
+        "t": 780,
+        "mult": 2.1
+      },
+      {
+        "t": 900,
+        "mult": 2.4
+      }
+    ],
+    "dmg_curve": [
+      {
+        "t": 0,
+        "mult": 1.0
+      },
+      {
+        "t": 300,
+        "mult": 1.1
+      },
+      {
+        "t": 600,
+        "mult": 1.25
+      },
+      {
+        "t": 900,
+        "mult": 1.4
+      }
+    ],
+    "spawn_budget_per_sec": [
+      {
+        "t": 0,
+        "budget": 2
+      },
+      {
+        "t": 60,
+        "budget": 3
+      },
+      {
+        "t": 120,
+        "budget": 4
+      },
+      {
+        "t": 180,
+        "budget": 6
+      },
+      {
+        "t": 300,
+        "budget": 5
+      },
+      {
+        "t": 360,
+        "budget": 7
+      },
+      {
+        "t": 480,
+        "budget": 8
+      },
+      {
+        "t": 540,
+        "budget": 6
+      },
+      {
+        "t": 600,
+        "budget": 5
+      },
+      {
+        "t": 660,
+        "budget": 9
+      },
+      {
+        "t": 780,
+        "budget": 11
+      },
+      {
+        "t": 840,
+        "budget": 12
+      },
+      {
+        "t": 900,
+        "budget": 4
+      }
+    ],
+    "enemy_cap": 250,
+    "notes": "Budget drops around bosses so patterns read. Cap is hard; queue overflow."
+  },
+  "timeline": [
+    {
+      "id": "open_walkers",
+      "t": 0,
+      "action": "spawn",
+      "enemy": "drifter",
+      "count": 6,
+      "formation": "scatter",
+      "hp_mult": 1.0,
+      "feel": "teach_move_kite"
+    },
+    {
+      "id": "open_trickle",
+      "t": 15,
+      "action": "spawn_loop",
+      "enemy": "drifter",
+      "count": 2,
+      "every_sec": 4,
+      "until_t": 55,
+      "formation": "flood_from_edge",
+      "hp_mult": 1.0
+    },
+    {
+      "id": "first_spitters",
+      "t": 60,
+      "action": "spawn",
+      "enemy": "tox_spout",
+      "count": 3,
+      "formation": "cross",
+      "hp_mult": 1.0,
+      "feel": "introduce_ranged"
+    },
+    {
+      "id": "spitter_trickle",
+      "t": 70,
+      "action": "spawn_loop",
+      "enemy": "tox_spout",
+      "count": 1,
+      "every_sec": 8,
+      "until_t": 110,
+      "formation": "scatter",
+      "hp_mult": 1.0
+    },
+    {
+      "id": "runners_in",
+      "t": 90,
+      "action": "spawn",
+      "enemy": "hound",
+      "count": 4,
+      "formation": "line",
+      "hp_mult": 1.0,
+      "feel": "speed_pressure"
+    },
+    {
+      "id": "runner_replace",
+      "t": 100,
+      "action": "spawn_loop",
+      "enemy": "hound",
+      "count": 2,
+      "every_sec": 5,
+      "until_t": 150,
+      "formation": "flood_from_edge",
+      "hp_mult": 1.0
+    },
+    {
+      "id": "horde_ring_1",
+      "t": 120,
+      "action": "horde",
+      "enemy": "drifter",
+      "count": 28,
+      "formation": "ring",
+      "hp_mult": 1.0,
+      "feel": "first_horde_dump",
+      "banner": null
+    },
+    {
+      "id": "horde_ring_1b",
+      "t": 135,
+      "action": "spawn",
+      "enemy": "hound",
+      "count": 8,
+      "formation": "flood_from_edge",
+      "hp_mult": 1.0
+    },
+    {
+      "id": "miniboss_3m_warn",
+      "t": 175,
+      "action": "boss_warn",
+      "banner": "WARNING / MINI",
+      "clear_trash": false,
+      "freeze_trash_sec": 0.5
+    },
+    {
+      "id": "miniboss_3m",
+      "t": 180,
+      "action": "boss",
+      "enemy": "railhorn_mini",
+      "count": 1,
+      "formation": "edge",
+      "hp_mult": 0.85,
+      "drop": "gold_chest",
+      "camera_punch": true,
+      "feel": "first_mini_exam"
+    },
+    {
+      "id": "spitter_cross_3m",
+      "t": 185,
+      "action": "spawn",
+      "enemy": "tox_spout",
+      "count": 8,
+      "formation": "cross",
+      "hp_mult": 1.1
+    },
+    {
+      "id": "mid_mix_a",
+      "t": 200,
+      "action": "spawn_loop",
+      "enemy": "drifter",
+      "count": 3,
+      "every_sec": 4,
+      "until_t": 235,
+      "formation": "scatter",
+      "hp_mult": 1.1
+    },
+    {
+      "id": "dog_horde_4m",
+      "t": 240,
+      "action": "horde",
+      "enemy": "hound",
+      "count": 36,
+      "formation": "flood_from_edge",
+      "hp_mult": 1.05,
+      "feel": "dog_horde"
+    },
+    {
+      "id": "boss_1_warn",
+      "t": 295,
+      "action": "boss_warn",
+      "banner": "WARNING / BOSS",
+      "clear_trash": true,
+      "freeze_trash_sec": 1.2
+    },
+    {
+      "id": "boss_1",
+      "t": 300,
+      "action": "boss",
+      "enemy": "rico_bloom",
+      "count": 1,
+      "formation": "center",
+      "hp_mult": 1.0,
+      "drop": "gold_chest",
+      "camera_punch": true
+    },
+    {
+      "id": "post_boss1_armored_common",
+      "t": 320,
+      "action": "spawn_loop",
+      "enemy": "plated_drifter",
+      "count": 2,
+      "every_sec": 6,
+      "until_t": 470,
+      "formation": "scatter",
+      "hp_mult": 1.2
+    },
+    {
+      "id": "surround_flies_6m",
+      "t": 360,
+      "action": "horde",
+      "enemy": "drift_mote",
+      "count": 40,
+      "formation": "ring",
+      "hp_mult": 1.0,
+      "feel": "diagonal_fly_chaos"
+    },
+    {
+      "id": "flies_trickle",
+      "t": 370,
+      "action": "spawn_loop",
+      "enemy": "drift_mote",
+      "count": 4,
+      "every_sec": 3,
+      "until_t": 440,
+      "formation": "scatter",
+      "hp_mult": 1.0
+    },
+    {
+      "id": "mixed_pressure_730",
+      "t": 450,
+      "action": "spawn",
+      "composition": [
+        {
+          "enemy": "drifter",
+          "count": 12
+        },
+        {
+          "enemy": "hound",
+          "count": 8
+        },
+        {
+          "enemy": "tox_spout",
+          "count": 6
+        },
+        {
+          "enemy": "plated_drifter",
+          "count": 3
+        }
+      ],
+      "formation": "scatter",
+      "hp_mult": 1.3,
+      "feel": "mixed_pressure"
+    },
+    {
+      "id": "miniboss_8m_warn",
+      "t": 475,
+      "action": "boss_warn",
+      "banner": "WARNING / MINI",
+      "clear_trash": false,
+      "freeze_trash_sec": 0.6
+    },
+    {
+      "id": "miniboss_8m",
+      "t": 480,
+      "action": "boss",
+      "enemy": "railhorn_mini",
+      "count": 1,
+      "formation": "edge",
+      "hp_mult": 1.0,
+      "drop": "gold_chest",
+      "camera_punch": true
+    },
+    {
+      "id": "dense_mixed_9m",
+      "t": 540,
+      "action": "horde",
+      "composition": [
+        {
+          "enemy": "drifter",
+          "count": 20
+        },
+        {
+          "enemy": "hound",
+          "count": 14
+        },
+        {
+          "enemy": "tox_spout",
+          "count": 10
+        },
+        {
+          "enemy": "drift_mote",
+          "count": 16
+        }
+      ],
+      "formation": "ring",
+      "hp_mult": 1.4,
+      "feel": "dense_mixed"
+    },
+    {
+      "id": "elite_spitter_pack",
+      "t": 570,
+      "action": "spawn",
+      "enemy": "tox_spout_elite",
+      "count": 2,
+      "formation": "cross",
+      "hp_mult": 1.0,
+      "elite": true,
+      "drop": "silver_chest"
+    },
+    {
+      "id": "boss_2_warn",
+      "t": 595,
+      "action": "boss_warn",
+      "banner": "WARNING / BOSS",
+      "clear_trash": true,
+      "freeze_trash_sec": 1.4,
+      "arena_ring": true
+    },
+    {
+      "id": "boss_2",
+      "t": 600,
+      "action": "boss",
+      "enemy": "railhorn",
+      "count": 1,
+      "formation": "center",
+      "hp_mult": 1.15,
+      "drop": "gold_chest",
+      "camera_punch": true,
+      "arena_clamp": true
+    },
+    {
+      "id": "escalate_11m",
+      "t": 660,
+      "action": "spawn_loop",
+      "composition": [
+        {
+          "enemy": "plated_drifter",
+          "count": 2
+        },
+        {
+          "enemy": "hound",
+          "count": 3
+        },
+        {
+          "enemy": "tox_spout",
+          "count": 2
+        }
+      ],
+      "every_sec": 4,
+      "until_t": 780,
+      "formation": "flood_from_edge",
+      "hp_mult": 1.6
+    },
+    {
+      "id": "elite_bursts",
+      "t": 690,
+      "action": "spawn",
+      "enemy": "drifter_elite",
+      "count": 2,
+      "formation": "line",
+      "hp_mult": 1.0,
+      "elite": true,
+      "drop": "silver_chest"
+    },
+    {
+      "id": "elite_bursts_2",
+      "t": 750,
+      "action": "spawn",
+      "composition": [
+        {
+          "enemy": "tox_spout_elite",
+          "count": 1
+        },
+        {
+          "enemy": "plated_drifter_elite",
+          "count": 1
+        }
+      ],
+      "formation": "cross",
+      "hp_mult": 1.0,
+      "elite": true,
+      "drop": "silver_chest"
+    },
+    {
+      "id": "pre_final_horde",
+      "t": 840,
+      "action": "horde",
+      "composition": [
+        {
+          "enemy": "drifter",
+          "count": 24
+        },
+        {
+          "enemy": "hound",
+          "count": 20
+        },
+        {
+          "enemy": "tox_spout",
+          "count": 12
+        },
+        {
+          "enemy": "drift_mote",
+          "count": 24
+        },
+        {
+          "enemy": "plated_drifter",
+          "count": 8
+        }
+      ],
+      "formation": "ring",
+      "hp_mult": 1.9,
+      "feel": "pre_final_horde"
+    },
+    {
+      "id": "boss_3_warn",
+      "t": 895,
+      "action": "boss_warn",
+      "banner": "WARNING / FINAL PROTOCOL",
+      "clear_trash": true,
+      "freeze_trash_sec": 1.6
+    },
+    {
+      "id": "boss_3",
+      "t": 900,
+      "action": "boss",
+      "enemy": "mortar_host",
+      "count": 1,
+      "formation": "center",
+      "hp_mult": 1.3,
+      "drop": "gold_chest",
+      "camera_punch": true,
+      "chapter_clear_on_kill": true
+    }
+  ],
+  "ambient_fill": {
+    "enabled": true,
+    "description": "When timeline loops are idle and live enemies under 40% of cap, drip budget from spawn_budget_per_sec using weighted table.",
+    "weights_by_phase": [
+      {
+        "until_t": 180,
+        "weights": {
+          "drifter": 70,
+          "hound": 20,
+          "tox_spout": 10
+        }
+      },
+      {
+        "until_t": 300,
+        "weights": {
+          "drifter": 45,
+          "hound": 30,
+          "tox_spout": 20,
+          "plated_drifter": 5
+        }
+      },
+      {
+        "until_t": 600,
+        "weights": {
+          "drifter": 30,
+          "hound": 25,
+          "tox_spout": 20,
+          "plated_drifter": 15,
+          "drift_mote": 10
+        }
+      },
+      {
+        "until_t": 900,
+        "weights": {
+          "drifter": 20,
+          "hound": 25,
+          "tox_spout": 20,
+          "plated_drifter": 20,
+          "drift_mote": 15
+        }
+      }
+    ]
+  }
+}

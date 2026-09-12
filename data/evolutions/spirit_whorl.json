@@ -1,0 +1,19 @@
+{
+  "id": "spirit_whorl",
+  "name": "spirit_whorl",
+  "display_name": "Spirit Whorl",
+  "requires_weapon": "shard_knives",
+  "requires_weapon_level": 5,
+  "requires_passive": "blade_codex",
+  "requires_passive_level": 1,
+  "replaces_weapon": "shard_knives",
+  "offer_rule": "chest_offer",
+  "behavior_notes": "More blades, pierce, and a short orbit-return after impact — knives fan out then spiral back through the pack. Keeps nearest targeting but reads as a blender fan instead of single stitches.",
+  "stats_hint": {
+    "damage": 30,
+    "cooldown_s": 0.45,
+    "projectile_count": 5,
+    "pierce": 3,
+    "orbit_return": true
+  }
+}

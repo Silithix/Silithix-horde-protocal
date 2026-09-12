@@ -1,0 +1,31 @@
+{
+  "id": "railhorn_mini",
+  "name": "railhorn_mini",
+  "display_name": "Railhorn Cub",
+  "hp": 420,
+  "move_speed_px_s": 60,
+  "contact_damage": 12,
+  "phases": 1,
+  "weak_to": "sidestep_during_windup",
+  "patterns": [
+    {
+      "id": "line_charge",
+      "telegraph_s": 0.85,
+      "cooldown_s": 4.0,
+      "description": "Shorter wind-up charge — teaches Railhorn language before full boss."
+    },
+    {
+      "id": "shockwave_slam",
+      "telegraph_s": 0.55,
+      "cooldown_s": 5.5,
+      "description": "Smaller shockwave ring; same read as full Railhorn."
+    }
+  ],
+  "intro_notes": "Mini-boss (~8:00). Brief WARNING, camera punch, gold/mini chest on kill.",
+  "chest_on_kill": "gold",
+  "xp_drop": "gem_blue",
+  "gold_drop": 25,
+  "parent_pattern": "railhorn",
+  "notes": "Mini-boss using Railhorn pattern kit at reduced HP/size. Waves can hp_mult further. Sprite placeholder: res://assets/sprites/enemies/railhorn_mini.png",
+  "sprite": "res://assets/sprites/enemies/railhorn_mini.png"
+}

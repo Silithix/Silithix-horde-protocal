@@ -1,0 +1,33 @@
+{
+  "design_resolution": { "w": 1080, "h": 1920 },
+  "safe_pad": { "top": 64, "bottom": 48, "side": 32 },
+  "min_touch_px": 96,
+  "colors": {
+    "bg_deep": "#0B0F1A",
+    "bg_floor": "#141C2B",
+    "bg_floor_alt": "#1A2436",
+    "ink": "#E8EEF8",
+    "ink_dim": "#8B97B0",
+    "player": "#5CE1FF",
+    "hp": "#3DFF9A",
+    "hp_low": "#FF5C6C",
+    "xp": "#7CFF5C",
+    "xp_mid": "#5CB8FF",
+    "xp_high": "#FFD45C",
+    "melee": "#6B8F71",
+    "ranged": "#B06BFF",
+    "elite": "#FF3B4A",
+    "boss": "#FF8A3D",
+    "warn": "#FFC53D",
+    "card": "#1E2A40",
+    "card_stroke": "#3A4F73",
+    "accent": "#5C7CFF",
+    "danger": "#FF4D6A"
+  },
+  "hud": {
+    "hp_bar_h": 24,
+    "xp_bar_h": 12,
+    "chip_size": 64,
+    "card_icon": 96
+  }
+}

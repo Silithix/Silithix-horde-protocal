@@ -1,0 +1,27 @@
+{
+  "id": "pulse_halo",
+  "name": "pulse_halo",
+  "display_name": "Pulse Halo",
+  "family": "aura",
+  "rarity": "common",
+  "max_level": 5,
+  "targeting": "self_aura",
+  "base_damage": 8,
+  "cooldown_s": 0.45,
+  "projectile_count": 0,
+  "projectile_speed": 0,
+  "pierce": 99,
+  "area_scale": 1.0,
+  "knockback": 20,
+  "status_on_hit": null,
+  "level_curve": [
+    {"level": 1, "damage": 8, "cooldown_s": 0.45, "area_scale": 1.0, "knockback": 20},
+    {"level": 2, "damage": 11, "cooldown_s": 0.42, "area_scale": 1.1, "knockback": 24},
+    {"level": 3, "damage": 14, "cooldown_s": 0.4, "area_scale": 1.2, "knockback": 28},
+    {"level": 4, "damage": 18, "cooldown_s": 0.38, "area_scale": 1.35, "knockback": 32},
+    {"level": 5, "damage": 22, "cooldown_s": 0.35, "area_scale": 1.5, "knockback": 36}
+  ],
+  "notes": "Damaging ring hugging Rook. Tick-feel, not a one-shot nova — rewards standing in the scrap pile for half a second then sliding out. Radius must read clearly on a phone. Sprite placeholder: res://assets/sprites/weapons/pulse_halo.png",
+  "evolution_id": "vital_barrier",
+  "icon": "res://assets/sprites/weapons/pulse_halo.png"
+}

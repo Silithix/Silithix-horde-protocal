@@ -1,0 +1,19 @@
+{
+  "id": "magnet_reaver",
+  "name": "magnet_reaver",
+  "display_name": "Magnet Reaver",
+  "requires_weapon": "return_disk",
+  "requires_weapon_level": 5,
+  "requires_passive": "pull_field",
+  "requires_passive_level": 1,
+  "replaces_weapon": "return_disk",
+  "offer_rule": "chest_offer",
+  "behavior_notes": "Return path yanks small enemies inward and hits harder on the snap-back. Soft vacuum + damage in one arc.",
+  "stats_hint": {
+    "damage": 38,
+    "cooldown_s": 0.85,
+    "projectile_count": 3,
+    "pierce": 8,
+    "pull_on_return": true
+  }
+}

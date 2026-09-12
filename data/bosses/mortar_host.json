@@ -1,0 +1,30 @@
+{
+  "id": "mortar_host",
+  "name": "mortar_host",
+  "display_name": "Mortar Host",
+  "hp": 1400,
+  "move_speed_px_s": 40,
+  "contact_damage": 14,
+  "phases": 2,
+  "weak_to": "keep_moving_out_of_circles",
+  "patterns": [
+    {
+      "id": "mortar_circles",
+      "telegraph_s": 0.9,
+      "cooldown_s": 3.5,
+      "description": "Drops poison/mortar danger circles mid-range. Stand still = die."
+    },
+    {
+      "id": "summon_pack",
+      "at_hp_pct": [66, 33],
+      "telegraph_s": 1.0,
+      "description": "At 66% and 33% HP summons a pack (Drifters/Hounds). Clear trash while dodging mortars."
+    }
+  ],
+  "intro_notes": "Final boss (~15:00). Clear trash → WARNING banner → camera punch → fight. Gold chest on kill. Chapter clear after kill.",
+  "chest_on_kill": "gold",
+  "xp_drop": "gem_gold",
+  "gold_drop": 80,
+  "notes": "Boss 3. Artillery + summons — not a big walker. Poison pools use burn/slow statuses. Sprite placeholder: res://assets/sprites/enemies/mortar_host.png",
+  "sprite": "res://assets/sprites/enemies/mortar_host.png"
+}

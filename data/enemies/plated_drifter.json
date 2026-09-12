@@ -1,0 +1,23 @@
+{
+  "id": "plated_drifter",
+  "name": "plated_drifter",
+  "display_name": "Plated Drifter",
+  "tier": "armored",
+  "behavior": "seek_melee",
+  "hp": 55,
+  "move_speed_px_s": 55,
+  "contact_damage": 10,
+  "contact_tick_s": 0.4,
+  "attack_type": "contact",
+  "projectile": null,
+  "telegraph_s": 0,
+  "knockback_resist": 0.45,
+  "xp_drop": "gem_large",
+  "gold_drop": 2,
+  "elite": false,
+  "red_aura": false,
+  "chest_on_death": false,
+  "color_hint": "slate",
+  "notes": "High-HP slow melee. Soak DPS checks after Boss 1. Knockback resists so Orbit Blades don't yeet them forever. Sprite placeholder: res://assets/sprites/enemies/plated_drifter.png",
+  "sprite": "res://assets/sprites/enemies/plated_drifter.png"
+}

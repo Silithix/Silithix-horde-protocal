@@ -1,0 +1,20 @@
+{
+  "id": "core_capacitor",
+  "name": "core_capacitor",
+  "display_name": "Core Capacitor",
+  "family": "tech",
+  "rarity": "common",
+  "max_level": 5,
+  "stat": "tech_power",
+  "level_curve": [
+    {"level": 1, "tech_damage_mult": 1.10},
+    {"level": 2, "tech_damage_mult": 1.18},
+    {"level": 3, "tech_damage_mult": 1.26},
+    {"level": 4, "tech_damage_mult": 1.35},
+    {"level": 5, "tech_damage_mult": 1.45}
+  ],
+  "notes": "Buffs tech/element family (Arc Spire, Pulse Halo ticks). Evo catalyst for Arc Spire → Storm Nest.",
+  "evolution_for": "storm_nest",
+  "applies_to_families": ["tech", "aura"],
+  "icon": "res://assets/ui/icons/passives/core_capacitor.png"
+}

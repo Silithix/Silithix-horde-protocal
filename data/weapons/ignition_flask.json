@@ -1,0 +1,29 @@
+{
+  "id": "ignition_flask",
+  "name": "ignition_flask",
+  "display_name": "Ignition Flask",
+  "family": "fire",
+  "rarity": "common",
+  "max_level": 5,
+  "targeting": "ground_pool",
+  "base_damage": 6,
+  "cooldown_s": 1.8,
+  "projectile_count": 1,
+  "projectile_speed": 280,
+  "pierce": 0,
+  "area_scale": 1.0,
+  "knockback": 0,
+  "status_on_hit": "burn",
+  "pool_duration_s": 2.5,
+  "pool_tick_s": 0.4,
+  "level_curve": [
+    {"level": 1, "damage": 6, "cooldown_s": 1.8, "area_scale": 1.0, "pool_duration_s": 2.5, "projectile_count": 1},
+    {"level": 2, "damage": 8, "cooldown_s": 1.7, "area_scale": 1.1, "pool_duration_s": 2.8, "projectile_count": 1},
+    {"level": 3, "damage": 10, "cooldown_s": 1.6, "area_scale": 1.2, "pool_duration_s": 3.0, "projectile_count": 2},
+    {"level": 4, "damage": 12, "cooldown_s": 1.5, "area_scale": 1.35, "pool_duration_s": 3.2, "projectile_count": 2},
+    {"level": 5, "damage": 15, "cooldown_s": 1.4, "area_scale": 1.5, "pool_duration_s": 3.5, "projectile_count": 3}
+  ],
+  "notes": "Tossed flask that leaves a burning ground pool. Damage is the tick + burn status — zone denial for choke points and boss telegraphs. Sprite placeholder: res://assets/sprites/weapons/ignition_flask.png",
+  "evolution_id": "hellflood",
+  "icon": "res://assets/sprites/weapons/ignition_flask.png"
+}

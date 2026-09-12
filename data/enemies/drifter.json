@@ -1,0 +1,23 @@
+{
+  "id": "drifter",
+  "name": "drifter",
+  "display_name": "Drifter",
+  "tier": "trash",
+  "behavior": "seek_melee",
+  "hp": 18,
+  "move_speed_px_s": 70,
+  "contact_damage": 8,
+  "contact_tick_s": 0.4,
+  "attack_type": "contact",
+  "projectile": null,
+  "telegraph_s": 0,
+  "knockback_resist": 0.0,
+  "xp_drop": "gem_small",
+  "gold_drop": 1,
+  "elite": false,
+  "red_aura": false,
+  "chest_on_death": false,
+  "color_hint": "grey_green",
+  "notes": "Slow shambling melee — the kite tutorial. Individually soft (two Shard Knives at L1), lethal in a clump if Rook stands still. No wind-up; contact tick is the whole threat. Silhouette should read as a hunched lab refugee, not a zombie copy. Sprite placeholder: res://assets/sprites/enemies/drifter.png",
+  "sprite": "res://assets/sprites/enemies/drifter.png"
+}

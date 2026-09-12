@@ -1,0 +1,19 @@
+{
+  "id": "storm_nest",
+  "name": "storm_nest",
+  "display_name": "Storm Nest",
+  "requires_weapon": "arc_spire",
+  "requires_weapon_level": 5,
+  "requires_passive": "core_capacitor",
+  "requires_passive_level": 1,
+  "replaces_weapon": "arc_spire",
+  "offer_rule": "chest_offer",
+  "behavior_notes": "Bolts chain to nearby enemies and leave a brief storm cloud that ticks damage in place. Screen-clear artillery feel.",
+  "stats_hint": {
+    "damage": 48,
+    "cooldown_s": 0.9,
+    "projectile_count": 5,
+    "chain_count": 3,
+    "storm_cloud_duration_s": 2.0
+  }
+}

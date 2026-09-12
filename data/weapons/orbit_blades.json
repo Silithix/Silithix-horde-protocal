@@ -1,0 +1,28 @@
+{
+  "id": "orbit_blades",
+  "name": "orbit_blades",
+  "display_name": "Orbit Blades",
+  "family": "orbit",
+  "rarity": "common",
+  "max_level": 5,
+  "targeting": "orbit",
+  "base_damage": 10,
+  "cooldown_s": 0.0,
+  "projectile_count": 1,
+  "projectile_speed": 180,
+  "pierce": 99,
+  "area_scale": 1.0,
+  "knockback": 60,
+  "status_on_hit": null,
+  "orbit_radius_px": 90,
+  "level_curve": [
+    {"level": 1, "damage": 10, "projectile_count": 1, "orbit_radius_px": 90, "projectile_speed": 180, "knockback": 60},
+    {"level": 2, "damage": 13, "projectile_count": 1, "orbit_radius_px": 95, "projectile_speed": 200, "knockback": 70},
+    {"level": 3, "damage": 15, "projectile_count": 2, "orbit_radius_px": 100, "projectile_speed": 210, "knockback": 80},
+    {"level": 4, "damage": 18, "projectile_count": 2, "orbit_radius_px": 110, "projectile_speed": 230, "knockback": 90},
+    {"level": 5, "damage": 22, "projectile_count": 3, "orbit_radius_px": 120, "projectile_speed": 250, "knockback": 100}
+  ],
+  "notes": "1–3 spinning saws on a fixed orbit. Cooldown unused — damage is continuous contact. Feel is a moving blender: path Rook so the orbit rakes the densest lane. Sprite placeholder: res://assets/sprites/weapons/orbit_blades.png",
+  "evolution_id": "crusher_ring",
+  "icon": "res://assets/sprites/weapons/orbit_blades.png"
+}

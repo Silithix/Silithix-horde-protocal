@@ -1,0 +1,19 @@
+name: android-apk
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  note:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Export placeholder
+        run: |
+          echo "Godot headless Android export is TODO (QA + Arch)."
+          echo "Local path: see docs/EXPORT.md"
+          echo "Project main scene: res://scenes/boot/Boot.tscn"
+          test -f project.godot
+          test -f export_presets.cfg

@@ -1,0 +1,28 @@
+{
+  "id": "winglet_b",
+  "name": "winglet_b",
+  "display_name": "Winglet B",
+  "family": "drone",
+  "rarity": "common",
+  "max_level": 5,
+  "targeting": "turret",
+  "base_damage": 9,
+  "cooldown_s": 0.9,
+  "projectile_count": 1,
+  "projectile_speed": 380,
+  "pierce": 0,
+  "area_scale": 1.0,
+  "knockback": 15,
+  "status_on_hit": null,
+  "follow_offset_px": {"x": 48, "y": -36},
+  "level_curve": [
+    {"level": 1, "damage": 9, "cooldown_s": 0.9, "projectile_count": 1},
+    {"level": 2, "damage": 12, "cooldown_s": 0.85, "projectile_count": 1},
+    {"level": 3, "damage": 15, "cooldown_s": 0.8, "projectile_count": 1},
+    {"level": 4, "damage": 18, "cooldown_s": 0.75, "projectile_count": 2},
+    {"level": 5, "damage": 22, "cooldown_s": 0.7, "projectile_count": 2}
+  ],
+  "notes": "Right-side floating turret card. Slightly slower cadence than A so the pair staggers shots. Both cards at L5 → Twin Barrage (no passive required). Sprite placeholder: res://assets/sprites/weapons/winglet_b.png",
+  "evolution_id": "twin_barrage",
+  "icon": "res://assets/sprites/weapons/winglet_b.png"
+}

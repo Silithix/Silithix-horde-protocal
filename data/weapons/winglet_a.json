@@ -1,0 +1,28 @@
+{
+  "id": "winglet_a",
+  "name": "winglet_a",
+  "display_name": "Winglet A",
+  "family": "drone",
+  "rarity": "common",
+  "max_level": 5,
+  "targeting": "turret",
+  "base_damage": 9,
+  "cooldown_s": 0.85,
+  "projectile_count": 1,
+  "projectile_speed": 380,
+  "pierce": 0,
+  "area_scale": 1.0,
+  "knockback": 15,
+  "status_on_hit": null,
+  "follow_offset_px": {"x": -48, "y": -36},
+  "level_curve": [
+    {"level": 1, "damage": 9, "cooldown_s": 0.85, "projectile_count": 1},
+    {"level": 2, "damage": 12, "cooldown_s": 0.8, "projectile_count": 1},
+    {"level": 3, "damage": 15, "cooldown_s": 0.75, "projectile_count": 1},
+    {"level": 4, "damage": 18, "cooldown_s": 0.7, "projectile_count": 2},
+    {"level": 5, "damage": 22, "cooldown_s": 0.65, "projectile_count": 2}
+  ],
+  "notes": "Left-side floating turret card. Fires independently at nearest. Paired with Winglet B as two weapon slots — together they unlock Twin Barrage. Sprite placeholder: res://assets/sprites/weapons/winglet_a.png",
+  "evolution_id": "twin_barrage",
+  "icon": "res://assets/sprites/weapons/winglet_a.png"
+}

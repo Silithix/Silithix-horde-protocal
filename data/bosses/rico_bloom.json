@@ -1,0 +1,30 @@
+{
+  "id": "rico_bloom",
+  "name": "rico_bloom",
+  "display_name": "Rico Bloom",
+  "hp": 800,
+  "move_speed_px_s": 45,
+  "contact_damage": 12,
+  "phases": 1,
+  "weak_to": "kiting",
+  "patterns": [
+    {
+      "id": "orb_volley",
+      "telegraph_s": 0.8,
+      "cooldown_s": 3.2,
+      "description": "Brief bloom telegraph, then fan of bouncing orbs that ricochet off soft arena bounds."
+    },
+    {
+      "id": "orbit_spray",
+      "telegraph_s": 0.5,
+      "cooldown_s": 5.0,
+      "description": "Slow spin while spitting single orbs at intervals — punish standing still."
+    }
+  ],
+  "intro_notes": "Clear or freeze trash for a beat → WARNING banner → camera punch → fight. Gold chest on kill.",
+  "chest_on_kill": "gold",
+  "xp_drop": "gem_gold",
+  "gold_drop": 40,
+  "notes": "Boss 1 (~5:00). Readable bouncing-orb exam. Weak to kiting; do not make it an HP sponge. Sprite placeholder: res://assets/sprites/enemies/rico_bloom.png",
+  "sprite": "res://assets/sprites/enemies/rico_bloom.png"
+}

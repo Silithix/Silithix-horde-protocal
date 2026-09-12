@@ -1,0 +1,27 @@
+{
+  "id": "pierce_lance",
+  "name": "pierce_lance",
+  "display_name": "Pierce Lance",
+  "family": "projectile",
+  "rarity": "common",
+  "max_level": 5,
+  "targeting": "linear_pierce",
+  "base_damage": 20,
+  "cooldown_s": 1.2,
+  "projectile_count": 1,
+  "projectile_speed": 520,
+  "pierce": 4,
+  "area_scale": 1.0,
+  "knockback": 80,
+  "status_on_hit": null,
+  "level_curve": [
+    {"level": 1, "damage": 20, "cooldown_s": 1.2, "projectile_count": 1, "pierce": 4, "knockback": 80},
+    {"level": 2, "damage": 26, "cooldown_s": 1.1, "projectile_count": 1, "pierce": 5, "knockback": 90},
+    {"level": 3, "damage": 32, "cooldown_s": 1.05, "projectile_count": 1, "pierce": 6, "knockback": 100},
+    {"level": 4, "damage": 38, "cooldown_s": 1.0, "projectile_count": 2, "pierce": 7, "knockback": 110},
+    {"level": 5, "damage": 46, "cooldown_s": 0.9, "projectile_count": 2, "pierce": 8, "knockback": 120}
+  ],
+  "notes": "Hard linear shot aimed at nearest. Deletes a lane of trash — the anti-horde button. Loud whoosh + hit flash sells the pierce. Sprite placeholder: res://assets/sprites/weapons/pierce_lance.png",
+  "evolution_id": "whistler_bolt",
+  "icon": "res://assets/sprites/weapons/pierce_lance.png"
+}

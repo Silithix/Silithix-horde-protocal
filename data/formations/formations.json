@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "notes": "Wave director resolves formation id + count into off-screen spawn points. All offsets in world px relative to player at event fire. Prefer spawn outside camera frustum (~half viewport + margin).",
+  "viewport_design": { "w": 1080, "h": 1920 },
+  "spawn_margin": 120,
+  "formations": {
+    "scatter": {
+      "type": "scatter",
+      "radius_min": 700,
+      "radius_max": 1100,
+      "angle_jitter": 1.0,
+      "description": "Random annulus around player. Default trash."
+    },
+    "ring": {
+      "type": "ring",
+      "radius": 900,
+      "equal_spacing": true,
+      "description": "Full surround. First horde + fly chaos + dense packs."
+    },
+    "cross": {
+      "type": "cross",
+      "arm_length": 1000,
+      "per_arm_bias": true,
+      "description": "N/E/S/W arms. Spitter teaching + elite packs."
+    },
+    "line": {
+      "type": "line",
+      "distance": 950,
+      "spread": 700,
+      "prefer_side": "random",
+      "description": "Side dump. Hounds and elite plated drifters."
+    },
+    "flood_from_edge": {
+      "type": "flood_from_edge",
+      "edge": "random_weighted_away_from_velocity",
+      "depth": 80,
+      "spread_frac": 0.85,
+      "description": "Lane/edge dump. Dog hordes and ambient pressure."
+    },
+    "center": {
+      "type": "center",
+      "offset": 0,
+      "description": "Boss spawn near player mid-screen, then pattern owns space."
+    },
+    "edge": {
+      "type": "edge",
+      "distance": 800,
+      "prefer_side": "away_from_player_facing",
+      "description": "Mini-boss charger entrance."
+    }
+  }
+}

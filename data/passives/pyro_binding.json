@@ -1,0 +1,20 @@
+{
+  "id": "pyro_binding",
+  "name": "pyro_binding",
+  "display_name": "Pyro Binding",
+  "family": "fire",
+  "rarity": "common",
+  "max_level": 5,
+  "stat": "burn_duration",
+  "level_curve": [
+    {"level": 1, "burn_duration_mult": 1.20, "fire_damage_mult": 1.08},
+    {"level": 2, "burn_duration_mult": 1.35, "fire_damage_mult": 1.14},
+    {"level": 3, "burn_duration_mult": 1.50, "fire_damage_mult": 1.20},
+    {"level": 4, "burn_duration_mult": 1.70, "fire_damage_mult": 1.28},
+    {"level": 5, "burn_duration_mult": 2.00, "fire_damage_mult": 1.36}
+  ],
+  "notes": "Longer burn + fire damage. Evo catalyst for Ignition Flask → Hellflood.",
+  "evolution_for": "hellflood",
+  "applies_to_families": ["fire"],
+  "icon": "res://assets/ui/icons/passives/pyro_binding.png"
+}

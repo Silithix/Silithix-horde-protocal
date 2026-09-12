@@ -1,0 +1,19 @@
+{
+  "id": "whistler_bolt",
+  "name": "whistler_bolt",
+  "display_name": "Whistler Bolt",
+  "requires_weapon": "pierce_lance",
+  "requires_weapon_level": 5,
+  "requires_passive": "strike_manual",
+  "requires_passive_level": 1,
+  "replaces_weapon": "pierce_lance",
+  "offer_rule": "chest_offer",
+  "behavior_notes": "Ultra-pierce linear shot with a rising whistle SFX and bonus damage after each pierce. Deletes whole corridors.",
+  "stats_hint": {
+    "damage": 55,
+    "cooldown_s": 0.8,
+    "projectile_count": 2,
+    "pierce": 99,
+    "damage_per_pierce": 4
+  }
+}
