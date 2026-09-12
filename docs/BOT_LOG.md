@@ -232,3 +232,12 @@
 ## 2026-09-12 — Systems — QA-B1 crate pickup
 
 **Files touched:** `scripts/meta/Crate.gd`, `scenes/pickups/Crate.tscn`, `scenes/run/Run.gd` — body+magnet area collect, larger hitbox, crates spawn closer (~140–260px), first crate ~6s.
+
+## 2026-09-12 — QA — crate re-smoke FAIL (QA-B1)
+
+**Files touched:** `docs/KNOWN_ISSUES.md`, `build/qa-smoke-b1b/*`, this log.
+
+**Results:** Could not confirm crate collect. Long run reached Lv13 / 4:34 with Pulse Halo visible. Brown squares likely Hounds (similar color to crates). Heal-at-full-HP has no feedback (QA-B2).
+
+**Handoff:** @Systems @Art — differentiate crate visual from Hound; add collect VFX/text. @Combat Hound/Tox/PulseHalo still need a dedicated smoke after crate readability fix.
+
