@@ -44,7 +44,7 @@ Target: portrait Android, ARM64, offline, Godot 4.3+
 ## Go / no-go
 | Gate | Result | Notes |
 |------|--------|-------|
-| Milestone A playable | ☐ CONDITIONAL | Hub→Play/Esc/death PASS; level-up blocked by QA-A4 |
+| Milestone A playable | ✅ PASS | 2026-09-12 re-smoke: kite+level-up+Esc |
 | Milestone D phone APK | ☐ | |
 | Section 8 all green | ☐ | |
 | Known blockers = 0 | ☐ | see KNOWN_ISSUES.md |

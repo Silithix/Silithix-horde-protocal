@@ -4,13 +4,11 @@ Log failures here before any APK go/no-go. Fix blockers. Ship with at most minor
 
 | ID | Severity | Area | Summary | Repro | Status | Owner |
 |----|----------|------|---------|-------|--------|-------|
-| QA-A1 | Minor | Level-up | Multi-level in one XP tick only shows one card | Collect gem that crosses ≥2 levels | Fixed 2026-09-12 (`2dd6d96`) — code review OK; runtime level-up still unverified | Systems |
-| QA-A2 | Major* | Pause / Hub | Esc→hub while paused softlock risk | Level-up open + Esc | Fixed 2026-09-12 (`2dd6d96`) — Esc→Hub PASS in smoke | Systems |
+| QA-A1 | Minor | Level-up | Multi-level one-card drop | ≥2 levels in one XP tick | Fixed `2dd6d96` + runtime OK | Systems |
+| QA-A2 | Major | Pause / Hub | Esc while paused softlock | Level-up + Esc | Fixed `2dd6d96` — Esc→Hub PASS | Systems |
 | QA-A3 | Perf note | Run | `get_nodes_in_group("enemy")` on spawn tick | 12-min soak | Watch | Systems |
-| QA-A4 | Major | Balance / A gate | Contact damage melts Rook before level-up; Hub→Play smoke never reached cards (~8s TTK, HP 100→0) | Hub→Play, stand/kite normally | Open | Combat / Systems |
-| QA-A5 | Minor | Audio | ALSA missing on QA box — dummy audio driver (expected on this machine) | Launch Godot here | Accepted / env | QA |
-
-\*Mitigated in code; Esc→Hub confirmed in 2026-09-12 GUI smoke.
+| QA-A4 | Major | Balance / A gate | Contact melt before level-up (~8s TTK) | Hub→Play kite | Fixed 2026-09-12 — Systems `c624929` + Combat contact 5/0.55; re-smoke PASS (~1:06, cards+unpause) | Combat / Systems |
+| QA-A5 | Minor | Audio | ALSA missing on QA box → dummy driver | Launch Godot here | Accepted / env | QA |
 
 ## Severity
 - **Blocker** — crash, softlock, data wipe, install fail → no ship
@@ -20,15 +18,12 @@ Log failures here before any APK go/no-go. Fix blockers. Ship with at most minor
 
 ## Last audit
 - Date: 2026-09-12
-- Build: local Milestone A @ `086ea35`+ (Godot 4.4.1 GUI smoke)
-- Method: interactive Hub→Play on shared box (`/workspace/tools/godot/godot`)
-- Screenshots: `build/qa-smoke/*.webp`
+- Build: Milestone A after QA-A4 mitigations (Godot 4.4.1 GUI)
+- Method: interactive re-smoke; screenshots `build/qa-smoke2/`
 - Results:
-  - Hub boot: PASS
-  - Play → Rook + Drifters: PASS
-  - Knives fire / kills / XP gems: PASS
-  - Level-up cards: **NOT REACHED** (QA-A4)
-  - Esc → Hub: PASS (no softlock)
-  - Death → Hub: PASS
-- Milestone A runtime: **CONDITIONAL** — loop boots and returns; level-up unverified
+  - Hub→Play: PASS
+  - Survive ≥20s: PASS (~1:06)
+  - Level-up cards + pick + unpause: PASS
+  - Esc→Hub: PASS
+- Milestone A runtime: **PASS** (kite + shoot + XP + level-up + abandon)
 - APK gate: **NO-GO** until D/E

@@ -165,3 +165,14 @@
 **How to test:** Hub→Play clean kite → survive past ~15–20s, hit level 2 cards.
 
 **Leftover risk:** May still melt if spawn clumps; retune after QA re-smoke. Push may need Lead/DM if room can't publish.
+
+## 2026-09-12 — QA — Hub→Play re-smoke (QA-A4)
+
+**Files touched:** `docs/KNOWN_ISSUES.md`, `docs/QA_CHECKLIST.md`, `build/qa-smoke2/*.webp`, this log.
+
+**How to test:** Godot 4.4.1 → Hub→Play → kite ≥20s → level-up pick → Esc→Hub.
+
+**Results:** All PASS. Survived ~1:06; Boots card picked; unpause OK; Esc→Hub clean. QA-A4 closed. Milestone A runtime **PASS**. APK still NO-GO.
+
+**Handoff:** Team clear to polish toward B; @Combat push Drifter/BALANCE if still local-only so main matches the smoked tree.
+
