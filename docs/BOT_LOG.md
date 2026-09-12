@@ -143,3 +143,16 @@
 **How to test:** Headless Godot 4.4.1 import — no Drifter script error.
 
 **Leftover risk:** Push pending — fix is on local disk; commit/push from 1:1 if room can't publish.
+
+## 2026-09-12 — QA — Hub→Play GUI break-it
+
+**Files touched:** `docs/KNOWN_ISSUES.md`, `docs/QA_CHECKLIST.md`, `build/qa-smoke/*.webp`, this log.
+
+**How to test:** `/workspace/tools/godot/godot --path /workspace/horde-protocol` → Hub→Play → kite → Esc / die.
+
+**Results:** Hub PASS; Play/Rook/Drifters/knives/XP PASS; Esc→Hub PASS; Death→Hub PASS; level-up NOT REACHED (TTK ~8s, QA-A4). No crash. Screenshots under `build/qa-smoke/`.
+
+**Leftover risk:** Cannot sign off A until level-up observed. APK still NO-GO.
+
+**Handoff:** @Combat @Systems — retune contact damage / spawn / i-frames so a clean kite can hit level 2–3. Then re-ping QA.
+

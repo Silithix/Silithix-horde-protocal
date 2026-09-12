@@ -44,11 +44,11 @@ Target: portrait Android, ARM64, offline, Godot 4.3+
 ## Go / no-go
 | Gate | Result | Notes |
 |------|--------|-------|
-| Milestone A playable | ☐ | |
+| Milestone A playable | ☐ CONDITIONAL | Hub→Play/Esc/death PASS; level-up blocked by QA-A4 |
 | Milestone D phone APK | ☐ | |
 | Section 8 all green | ☐ | |
 | Known blockers = 0 | ☐ | see KNOWN_ISSUES.md |
-| **Ship APK** | **NO-GO** | awaiting first build |
+| **Ship APK** | **NO-GO** | A level-up unverified; D/E not started |
 
 ## How to report a fail
 Append to `docs/KNOWN_ISSUES.md` with severity, repro, build hash/tag. Ping Lead for blockers.
