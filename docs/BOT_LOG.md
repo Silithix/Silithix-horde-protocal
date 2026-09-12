@@ -292,3 +292,12 @@
 ## 2026-09-12 — Systems — QA-B4 early Hound bias
 
 **Files:** `scenes/run/Run.gd` — Hound spawn chance 8% for first 90s, then 28%. Combat data untouched.
+
+## 2026-09-12 — Systems — Milestone B slice 2
+
+**Shipped**
+- `scripts/meta/ChapterClock.gd` — opener phases at 0/45/90/120s → `Events.chapter_phase_changed`
+- `scripts/meta/LevelUpUI.gd` — 6-weapon hard cap; new-weapon cards filtered; upgrades only for owned
+- `scenes/run/Run.gd` — owns `_owned_weapons`, starts ChapterClock
+
+**Next:** more Combat mounts as they land; Waves can author against phase ids.

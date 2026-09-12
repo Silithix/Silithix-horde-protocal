@@ -12,6 +12,7 @@ const PULSE_HALO := preload("res://scenes/combat/PulseHaloWeapon.tscn")
 const LEVEL_UP_UI := preload("res://scenes/ui/LevelUpUI.tscn")
 const PAUSE_MENU := preload("res://scenes/ui/PauseMenu.tscn")
 const HUD_SCENE := preload("res://scenes/ui/RunHud.tscn")
+const ChapterClockScript := preload("res://scripts/meta/ChapterClock.gd")
 
 const ENEMY_CAP := 28
 const SPAWN_RADIUS := 560.0
@@ -37,6 +38,8 @@ var _crate_timer: float = 2.0
 var _elapsed: float = 0.0
 var _run_over: bool = false
 var _bonus_xp_on_gem: int = 0
+var _owned_weapons: Array[String] = ["shard_knives"]
+var _chapter: Node = null
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -80,6 +83,12 @@ func _ready() -> void:
 	add_child(hud)
 	hud.call("bind_player", player)
 
+	_chapter = ChapterClockScript.new()
+	_chapter.name = "ChapterClock"
+	add_child(_chapter)
+	_chapter.phase_changed.connect(_on_chapter_phase)
+	_chapter.start()
+
 	for i in INITIAL_DRIFTERS:
 		_spawn_enemy_key(&"drifter", DRIFTER_SCENE)
 	_spawn_crate()
@@ -111,6 +120,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		pause_menu.open_menu()
 
 func _abandon_to_hub() -> void:
+	if _chapter and _chapter.has_method("stop"):
+		_chapter.call("stop")
 	if level_up_ui and level_up_ui.has_method("force_close"):
 		level_up_ui.call("force_close")
 	if pause_menu and pause_menu.has_method("close_menu"):
@@ -202,7 +213,21 @@ func _alive_enemy_count() -> int:
 func _on_player_leveled_up(new_level: int) -> void:
 	if pause_menu and pause_menu.has_method("close_menu"):
 		pause_menu.call("close_menu", false)
+	if level_up_ui.has_method("set_loadout"):
+		level_up_ui.call("set_loadout", _owned_weapons, _owned_weapons.size())
 	level_up_ui.show_level_up(new_level)
+
+func _on_chapter_phase(phase_id: String) -> void:
+	# Spawn pressure hooks for opener; Waves will replace with JSON later.
+	match phase_id:
+		"opener_pressure":
+			pass
+		"opener_mix":
+			pass
+		"opener_done":
+			pass
+		_:
+			pass
 
 func _upgrade_starter_weapon() -> void:
 	if _weapon == null or not is_instance_valid(_weapon):
@@ -214,9 +239,13 @@ func _upgrade_starter_weapon() -> void:
 
 func _offer_or_upgrade_pulse_halo() -> void:
 	if _halo == null or not is_instance_valid(_halo):
+		if _owned_weapons.size() >= 6 and "pulse_halo" not in _owned_weapons:
+			return
 		_halo = PULSE_HALO.instantiate()
 		player.add_child(_halo)
 		_halo.setup(player)
+		if "pulse_halo" not in _owned_weapons:
+			_owned_weapons.append("pulse_halo")
 	elif _halo.has_method("set_level"):
 		var lv := int(_halo.get("level")) if _halo.get("level") != null else 1
 		_halo.call("set_level", mini(lv + 1, 5))
@@ -241,6 +270,8 @@ func _on_card_picked(card_id: String) -> void:
 
 func _on_player_died() -> void:
 	_run_over = true
+	if _chapter and _chapter.has_method("stop"):
+		_chapter.call("stop")
 	if level_up_ui and level_up_ui.has_method("force_close"):
 		level_up_ui.call("force_close")
 	if pause_menu and pause_menu.has_method("close_menu"):
