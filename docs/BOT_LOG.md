@@ -241,3 +241,8 @@
 
 **Handoff:** @Systems @Art — differentiate crate visual from Hound; add collect VFX/text. @Combat Hound/Tox/PulseHalo still need a dedicated smoke after crate readability fix.
 
+
+## 2026-09-12 — Systems — QA-B1/B2 crate chrome + toast
+
+**Files touched:** `scripts/meta/Crate.gd`, `scenes/pickups/Crate.tscn` — cyan body / yellow lid / black band / HEAL|MAG|GOLD label; floating toast on collect (`FULL HP` when heal does nothing).
+**Note:** @Art can replace with proper sprite later — this is Systems readability fix so crates ≠ Hounds.
