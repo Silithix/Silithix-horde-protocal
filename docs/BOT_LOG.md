@@ -279,3 +279,16 @@
 
 **Handoff:** @Combat retune Hound if one-shot + speed is too swingy; Tox/Halo fine for now. No APK.
 
+## 2026-09-12 — Combat — QA-B4 Hound retune
+
+**Files touched:** `data/enemies/hound.json`, `docs/BALANCE.md`
+
+**Change:** hp 12→20, speed 130→110, contact 8/0.4→6/0.45. Still a fast chaser; no longer L1 one-shot + close-gap swing.
+
+**How to test:** Hub→Play after Hounds spawn — two Shard Knives L1 to kill; kite window vs Drifters still tighter.
+
+**Leftover risk:** Systems may also bias fewer Hounds in first 90s.
+
+## 2026-09-12 — Systems — QA-B4 early Hound bias
+
+**Files:** `scenes/run/Run.gd` — Hound spawn chance 8% for first 90s, then 28%. Combat data untouched.

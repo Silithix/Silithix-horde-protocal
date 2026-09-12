@@ -164,11 +164,13 @@ func _spawn_crate() -> void:
 		crate.call("setup", pos, kind)
 
 func _spawn_mixed() -> void:
-	# Bulk Drifters; sprinkle Hounds; Tox Spouts after 1:00 on the edges.
+	# Bulk Drifters; Hounds rare for first 90s (QA-B4); Tox Spouts after 1:00.
 	var roll := randi() % 100
+	var hound_chance := 8 if _elapsed < 90.0 else 28
 	if _elapsed >= TOX_UNLOCK_S and roll < 18:
 		_spawn_enemy_key(&"tox_spout", TOX_SPOUT_SCENE)
-	elif roll < 32:
+		return
+	if roll < hound_chance:
 		_spawn_enemy_key(&"hound", HOUND_SCENE)
 	else:
 		_spawn_enemy_key(&"drifter", DRIFTER_SCENE)
