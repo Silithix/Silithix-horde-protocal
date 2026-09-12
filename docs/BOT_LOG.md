@@ -301,3 +301,58 @@
 - `scenes/run/Run.gd` — owns `_owned_weapons`, starts ChapterClock
 
 **Next:** more Combat mounts as they land; Waves can author against phase ids.
+
+## 2026-09-12 — Art — B enemy silhouette polish
+
+**Files:**
+- `assets/sprites/enemies/hound_placeholder.png` — lean warm-brown dog (not walker square)
+- `assets/sprites/enemies/tox_spout_placeholder.png` — purple ranged + snout
+- `assets/sprites/weapons/pulse_halo_ring_placeholder.png` — cyan ring guide
+- `scenes/enemies/Hound.tscn`, `ToxSpout.tscn` — point Visual at new sprites
+
+**How to test:** Spot Hounds as elongated brown; Tox as purple; crates still cyan chests.
+
+**Next:** orbit_blades / plated_drifter placeholders when Combat scenes land. SFX still held.
+
+## 2026-09-12 — Combat — Milestone B slice (Orbit Blades + Plated Drifter)
+
+**Shipped**
+- `scripts/combat/OrbitBladesWeapon.gd` + `scenes/combat/OrbitBladesWeapon.tscn` — 1–3 orbiting `Area2D` blades; data `orbit_blades.json`; `setup(owner)` / `set_level`; continuous contact ICD (~0.22s) via `apply_damage` on `enemy`/`enemies`; Polygon2D diamond placeholders; spin = `projectile_speed` deg/s; radius from `orbit_radius_px`.
+- `scripts/enemies/PlatedDrifter.gd` + `scenes/enemies/PlatedDrifter.tscn` — slow armored seeker; data `plated_drifter`; pool `&"plated_drifter"` via `_pool_key()` only (no child `POOL_KEY`); `activate(pos, player)`; dual groups; Contact meta; steel/grey walker-placeholder tint (larger hitbox).
+- `scripts/combat/MILESTONE_B_HOOKS.md` — mount notes for orbit_blades + plated_drifter.
+
+**Did not touch:** `Run.gd`, `Player.gd`, `autoload/`, `project.godot`. Restored `data/enemies/hound.json` QA-B4 (hp 20 / speed 110 / contact 6/0.45) after working-tree reset — not part of this slice's design change.
+
+**Systems hook (do this next)**
+1. `Pool.warm(&"plated_drifter", PlatedDrifter.tscn, N)`; `acquire` + `activate(pos, player)`
+2. Offer `orbit_blades` on level-up: first pick attach `OrbitBladesWeapon.tscn` + `setup(player)`; later picks `set_level(n+1)`
+3. Keep groups: player=`"player"`, enemy=`"enemy"`+`"enemies"`, run=`"run_root"`
+
+**How to test:** Headless `godot --path /workspace/horde-protocol --quit-after 1` (no new script errors). After Systems wire: Hub→Play; Orbit Blades spin around Rook; Plated Drifters soak as steel-tinted seekers.
+
+**Leftover risk:** No Habby art (Polygon2D blades / steel walker tint). Orbit hit uses Area2D overlap + ICD (not physics push). Spawn mix / level-up card still Systems.
+
+**Handoff:** @Systems — see `scripts/combat/MILESTONE_B_HOOKS.md`. @Art — blade polygons + plated steel modulate ready for sprite swap.
+
+## 2026-09-12 — Art — plated + orbit placeholders (local)
+
+**Files:**
+- `assets/sprites/enemies/plated_drifter_placeholder.png` + `scenes/enemies/PlatedDrifter.tscn` Visual wired
+- `assets/sprites/weapons/orbit_blade_placeholder.png` (ready; OrbitBlades still draws polys — @Combat can swap in `_make_blade` when free)
+- Earlier local: `hound_placeholder.png`, `tox_spout_placeholder.png` + scene wires
+
+**Note:** Box-only until someone with push can land Art commit on `main`.
+
+## 2026-09-12 — QA — B1 reconfirm + B2 clock smoke (`fbe2c9d`)
+
+**Files touched:** `build/qa-smoke-b2/*`, this log.
+
+**Results:**
+- B1 crate toast: PASS (`+GOLD (FULL HP)`) after spawn-bias commit
+- Early Hounds: none sighted in first ~60s (bias looks right)
+- Chapter clock: PASS (0:00→0:58, crossed ~45s)
+- Level-up: PASS (Shard Knives upgrade); 6-weapon cap not fully exercised
+- Esc→Hub: PASS
+
+**Still waiting:** Combat Hound QA-B4 data on `main` for two-knife TTK. APK NO-GO.
+
