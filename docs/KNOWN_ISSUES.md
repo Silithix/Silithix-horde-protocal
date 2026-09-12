@@ -8,8 +8,8 @@ Log failures here before any APK go/no-go. Fix blockers. Ship with at most minor
 | QA-A2 | Major | Pause / Hub | Esc while paused softlock | Level-up + Esc | Fixed `2dd6d96` — Esc→Hub PASS | Systems |
 | QA-A3 | Perf note | Run | `get_nodes_in_group("enemy")` on spawn tick | 12-min soak | Watch | Systems |
 | QA-A4 | Major | Balance / A gate | Contact melt before level-up (~8s TTK) | Hub→Play kite | Fixed 2026-09-12 — Systems `c624929` + Combat contact 5/0.55; re-smoke PASS (~1:06, cards+unpause) | Combat / Systems |
-| QA-B1 | Major | Crates | Crate collect unverified in GUI. Likely confounders: (1) crate brown ≈ Hound brown, (2) heal at full HP has no feedback, (3) CRATE_INTERVAL 25s. Re-smoke `f1a578d` FAIL after long run (Lv13 / 4:34) | Walk into brown square; expect HP/gem change | Open | Systems / Art |
-| QA-B2 | Minor | Feedback | Pickup/crate collect has no float text / flash — heals at max HP look like no-ops | Collect heal_meat at full HP | Open | Systems / Art |
+| QA-B1 | Major | Crates | Collect unverified | Walk into crate | Fixed `69f5508` — proximity + beacon; GUI toast `+GOLD (FULL HP)` PASS | Systems |
+| QA-B2 | Minor | Feedback | Heal at full HP looks like no-op | Collect heal at max HP | Fixed `69f5508` — toast includes FULL HP | Systems / Art |
 | QA-A5 | Minor | Audio | ALSA missing on QA box → dummy driver | Launch Godot here | Accepted / env | QA |
 
 ## Severity
@@ -43,3 +43,9 @@ Log failures here before any APK go/no-go. Fix blockers. Ship with at most minor
 - Pulse Halo ring observed mid-run (Combat B present)
 - Hound brown vs crate brown nearly identical — high mis-ID risk
 - APK: NO-GO (Lead hold)
+
+## 2026-09-12 smoke b1d (`69f5508`)
+- Crate beside Rook + toast: **PASS** (`+GOLD (FULL HP)`)
+- Screenshots: `build/qa-smoke-b1d/`
+- QA-B1 / QA-B2 closed
+- APK: NO-GO (Lead hold on D/E)

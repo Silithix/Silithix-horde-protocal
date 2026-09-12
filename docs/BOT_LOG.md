@@ -261,3 +261,10 @@
 ## 2026-09-12 — Systems — QA-B1 proximity crate pickup
 
 **Files:** `Crate.gd` — star beacon + 56px proximity collect fallback + `try_pickup()`; `Player.gd` magnet collects crates; `Run.gd` — crate at t=0 near player, then every 18s at 70–140px.
+
+## 2026-09-12 — QA — crate re-smoke PASS (QA-B1)
+
+**Files touched:** `docs/KNOWN_ISSUES.md`, `build/qa-smoke-b1d/*`, this log.
+
+**Results:** First crate + beacon at start; toast `+GOLD (FULL HP)`. QA-B1/B2 closed. Combat B roster previously sighted. APK still NO-GO.
+
