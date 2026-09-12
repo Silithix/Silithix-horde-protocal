@@ -8,7 +8,7 @@ Log failures here before any APK go/no-go. Fix blockers. Ship with at most minor
 | QA-A2 | Major | Pause / Hub | Esc while paused softlock | Level-up + Esc | Fixed `2dd6d96` — Esc→Hub PASS | Systems |
 | QA-A3 | Perf note | Run | `get_nodes_in_group("enemy")` on spawn tick | 12-min soak | Watch | Systems |
 | QA-A4 | Major | Balance / A gate | Contact melt before level-up (~8s TTK) | Hub→Play kite | Fixed 2026-09-12 — Systems `c624929` + Combat contact 5/0.55; re-smoke PASS (~1:06, cards+unpause) | Combat / Systems |
-| QA-B1 | Minor | Crates | Crate spawn observed in B1 smoke but not collected/verified (pickup path unproven) | Survive past ~12s, touch crate | Open | Systems |
+| QA-B1 | Minor | Crates | Crate spawn observed in B1 smoke but not collected/verified (pickup path unproven) | Survive past ~12s, touch crate | Mitigated 2026-09-12 — area+body collect, closer spawn, larger hitbox | Systems |
 | QA-A5 | Minor | Audio | ALSA missing on QA box → dummy driver | Launch Godot here | Accepted / env | QA |
 
 ## Severity

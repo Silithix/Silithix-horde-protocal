@@ -33,7 +33,7 @@ var hud: CanvasLayer
 var _weapon: Node = null
 var _halo: Node = null
 var _spawn_timer: float = 0.0
-var _crate_timer: float = 12.0
+var _crate_timer: float = 6.0
 var _elapsed: float = 0.0
 var _run_over: bool = false
 var _bonus_xp_on_gem: int = 0
@@ -152,7 +152,7 @@ func _spawn_crate() -> void:
 	if player == null or not is_instance_valid(player) or not player.alive:
 		return
 	var angle := randf() * TAU
-	var pos := player.global_position + Vector2(cos(angle), sin(angle)) * randf_range(220.0, 420.0)
+	var pos := player.global_position + Vector2(cos(angle), sin(angle)) * randf_range(140.0, 260.0)
 	var kinds := ["heal_meat", "magnet", "gold_bag"]
 	var kind: String = kinds[randi() % kinds.size()]
 	var crate: Node = Pool.acquire(&"crate", pickups)

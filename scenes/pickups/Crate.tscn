@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/meta/Crate.gd" id="1_crate"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crate"]
-size = Vector2(40, 40)
+size = Vector2(56, 56)
 
 [node name="Crate" type="Area2D"]
 collision_layer = 8

@@ -228,3 +228,7 @@
 
 **Results:** All Systems B1 checklist PASS. Knife upgrade card picked. Crate seen not collected (QA-B1). No crash. Screenshots in `build/qa-smoke-b1/`. APK still NO-GO per Lead.
 
+
+## 2026-09-12 — Systems — QA-B1 crate pickup
+
+**Files touched:** `scripts/meta/Crate.gd`, `scenes/pickups/Crate.tscn`, `scenes/run/Run.gd` — body+magnet area collect, larger hitbox, crates spawn closer (~140–260px), first crate ~6s.
