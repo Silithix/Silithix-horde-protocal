@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://pulse_halo_wpn"]
+
+[ext_resource type="Script" path="res://scripts/combat/PulseHaloWeapon.gd" id="1_wpn"]
+
+[node name="PulseHaloWeapon" type="Node2D"]
+z_index = -1
+script = ExtResource("1_wpn")

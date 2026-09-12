@@ -39,8 +39,8 @@ Feel: two L1 knives kill one Drifter. Misses teach kite.
 |-------|------:|
 | hp | 18 |
 | move_speed_px_s | 70 |
-| contact_damage | 8 |
-| contact_tick_s | 0.4 |
+| contact_damage | 5 |
+| contact_tick_s | 0.55 |
 | gold_drop | 1 |
 | xp | 1 gem (runtime) |
 
@@ -51,6 +51,8 @@ Feel: two L1 knives kill one Drifter. Misses teach kite.
 - `railhorn_mini` @ 3:00 and 8:00
 
 ## Change log
+
+- 2026-09-12 QA-A4: Drifter contact_damage 8→5, contact_tick_s 0.4→0.55 (Systems also added i-frames / slower spawn).
 
 | Date | Change |
 |------|--------|
