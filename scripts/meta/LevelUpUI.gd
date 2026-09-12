@@ -23,6 +23,8 @@ const CARD_DEFS := [
 	{"id": "shard_knives", "label": "Shard Knives\nUpgrade weapon", "kind": "upgrade_weapon", "weapon": "shard_knives"},
 	{"id": "pulse_halo", "label": "Pulse Halo\nDamaging ring", "kind": "new_weapon", "weapon": "pulse_halo"},
 	{"id": "pulse_halo_up", "label": "Pulse Halo\nUpgrade ring", "kind": "upgrade_weapon", "weapon": "pulse_halo"},
+	{"id": "orbit_blades", "label": "Orbit Blades\nSpinning saws", "kind": "new_weapon", "weapon": "orbit_blades"},
+	{"id": "orbit_blades_up", "label": "Orbit Blades\nUpgrade saws", "kind": "upgrade_weapon", "weapon": "orbit_blades"},
 	{"id": "move_speed", "label": "Boots\n+12% move speed", "kind": "passive"},
 	{"id": "magnet", "label": "Magnet Coil\n+40 magnet radius", "kind": "passive"},
 	{"id": "max_hp", "label": "Plating\n+20 max HP + heal", "kind": "passive"},
@@ -100,6 +102,8 @@ func _present_next() -> void:
 		var cid := String(card["id"])
 		if cid == "pulse_halo_up":
 			cid = "pulse_halo"
+		if cid == "orbit_blades_up":
+			cid = "orbit_blades"
 		buttons[i].text = String(card["label"])
 		buttons[i].set_meta("card_id", cid)
 	visible = true

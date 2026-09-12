@@ -9,6 +9,8 @@ const HOUND_SCENE := preload("res://scenes/enemies/Hound.tscn")
 const TOX_SPOUT_SCENE := preload("res://scenes/enemies/ToxSpout.tscn")
 const SHARD_KNIVES := preload("res://scenes/combat/ShardKnivesWeapon.tscn")
 const PULSE_HALO := preload("res://scenes/combat/PulseHaloWeapon.tscn")
+const ORBIT_BLADES_PATH := "res://scenes/combat/OrbitBladesWeapon.tscn"
+const PLATED_DRIFTER_PATH := "res://scenes/enemies/PlatedDrifter.tscn"
 const LEVEL_UP_UI := preload("res://scenes/ui/LevelUpUI.tscn")
 const PAUSE_MENU := preload("res://scenes/ui/PauseMenu.tscn")
 const HUD_SCENE := preload("res://scenes/ui/RunHud.tscn")
@@ -33,6 +35,9 @@ var pause_menu: CanvasLayer
 var hud: CanvasLayer
 var _weapon: Node = null
 var _halo: Node = null
+var _orbit: Node = null
+var _plated_scene: PackedScene = null
+var _orbit_scene: PackedScene = null
 var _spawn_timer: float = 0.0
 var _crate_timer: float = 2.0
 var _elapsed: float = 0.0
@@ -53,6 +58,11 @@ func _ready() -> void:
 	Pool.warm(&"drifter", DRIFTER_SCENE, 48)
 	Pool.warm(&"hound", HOUND_SCENE, 32)
 	Pool.warm(&"tox_spout", TOX_SPOUT_SCENE, 24)
+	if ResourceLoader.exists(PLATED_DRIFTER_PATH):
+		_plated_scene = load(PLATED_DRIFTER_PATH) as PackedScene
+		Pool.warm(&"plated_drifter", _plated_scene, 16)
+	if ResourceLoader.exists(ORBIT_BLADES_PATH):
+		_orbit_scene = load(ORBIT_BLADES_PATH) as PackedScene
 
 	player = PLAYER_SCENE.instantiate()
 	entities.add_child(player)
@@ -175,9 +185,12 @@ func _spawn_crate() -> void:
 		crate.call("setup", pos, kind)
 
 func _spawn_mixed() -> void:
-	# Bulk Drifters; Hounds rare for first 90s (QA-B4); Tox Spouts after 1:00.
+	# Bulk Drifters; Hounds rare first 90s; Tox after 1:00; Plated sponges after 90s.
 	var roll := randi() % 100
 	var hound_chance := 8 if _elapsed < 90.0 else 28
+	if _elapsed >= 90.0 and _plated_scene != null and roll < 12:
+		_spawn_enemy_key(&"plated_drifter", _plated_scene)
+		return
 	if _elapsed >= TOX_UNLOCK_S and roll < 18:
 		_spawn_enemy_key(&"tox_spout", TOX_SPOUT_SCENE)
 		return
@@ -250,12 +263,32 @@ func _offer_or_upgrade_pulse_halo() -> void:
 		var lv := int(_halo.get("level")) if _halo.get("level") != null else 1
 		_halo.call("set_level", mini(lv + 1, 5))
 
+func _offer_or_upgrade_orbit_blades() -> void:
+	if _orbit_scene == null:
+		if ResourceLoader.exists(ORBIT_BLADES_PATH):
+			_orbit_scene = load(ORBIT_BLADES_PATH) as PackedScene
+		else:
+			return
+	if _orbit == null or not is_instance_valid(_orbit):
+		if _owned_weapons.size() >= 6 and "orbit_blades" not in _owned_weapons:
+			return
+		_orbit = _orbit_scene.instantiate()
+		player.add_child(_orbit)
+		_orbit.setup(player)
+		if "orbit_blades" not in _owned_weapons:
+			_owned_weapons.append("orbit_blades")
+	elif _orbit.has_method("set_level"):
+		var lv := int(_orbit.get("level")) if _orbit.get("level") != null else 1
+		_orbit.call("set_level", mini(lv + 1, 5))
+
 func _on_card_picked(card_id: String) -> void:
 	match card_id:
 		"shard_knives":
 			_upgrade_starter_weapon()
 		"pulse_halo":
 			_offer_or_upgrade_pulse_halo()
+		"orbit_blades":
+			_offer_or_upgrade_orbit_blades()
 		"move_speed":
 			player.set_meta("speed_mult", float(player.get_meta("speed_mult", 1.0)) + 0.12)
 		"magnet":

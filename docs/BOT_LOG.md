@@ -356,3 +356,8 @@
 
 **Still waiting:** Combat Hound QA-B4 data on `main` for two-knife TTK. APK NO-GO.
 
+
+## 2026-09-12 — Systems — Orbit Blades + Plated Drifter mount (safe load)
+
+**Shipped:** Run soft-loads Orbit/Plated if scenes exist; Plated in mix after 90s; level-up offers Orbit Blades under 6-cap.
+**Note:** Combat pack may still be pending on `main` — runtime `ResourceLoader.exists` keeps clones safe.
