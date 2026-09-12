@@ -1,20 +1,24 @@
 extends Node2D
-## Run root. Systems owns player/camera/XP/pooling/pause/crates here.
+## Run root. Systems owns player/camera/XP/pooling/pause/crates/spawn mix.
 
 const PLAYER_SCENE := preload("res://scenes/player/Player.tscn")
 const XP_GEM_SCENE := preload("res://scenes/pickups/XpGem.tscn")
 const CRATE_SCENE := preload("res://scenes/pickups/Crate.tscn")
 const DRIFTER_SCENE := preload("res://scenes/enemies/Drifter.tscn")
+const HOUND_SCENE := preload("res://scenes/enemies/Hound.tscn")
+const TOX_SPOUT_SCENE := preload("res://scenes/enemies/ToxSpout.tscn")
 const SHARD_KNIVES := preload("res://scenes/combat/ShardKnivesWeapon.tscn")
+const PULSE_HALO := preload("res://scenes/combat/PulseHaloWeapon.tscn")
 const LEVEL_UP_UI := preload("res://scenes/ui/LevelUpUI.tscn")
 const PAUSE_MENU := preload("res://scenes/ui/PauseMenu.tscn")
 const HUD_SCENE := preload("res://scenes/ui/RunHud.tscn")
 
-const ENEMY_CAP := 24
+const ENEMY_CAP := 28
 const SPAWN_RADIUS := 560.0
-const SPAWN_INTERVAL := 2.0
+const SPAWN_INTERVAL := 1.85
 const INITIAL_DRIFTERS := 2
 const CRATE_INTERVAL := 25.0
+const TOX_UNLOCK_S := 60.0
 
 @onready var world: Node2D = $World
 @onready var entities: Node2D = $Entities
@@ -27,8 +31,10 @@ var level_up_ui: CanvasLayer
 var pause_menu: CanvasLayer
 var hud: CanvasLayer
 var _weapon: Node = null
+var _halo: Node = null
 var _spawn_timer: float = 0.0
 var _crate_timer: float = 12.0
+var _elapsed: float = 0.0
 var _run_over: bool = false
 var _bonus_xp_on_gem: int = 0
 
@@ -41,7 +47,9 @@ func _ready() -> void:
 
 	Pool.warm(&"xp_gem", XP_GEM_SCENE, 64)
 	Pool.warm(&"crate", CRATE_SCENE, 8)
-	Pool.warm(&"drifter", DRIFTER_SCENE, 64)
+	Pool.warm(&"drifter", DRIFTER_SCENE, 48)
+	Pool.warm(&"hound", HOUND_SCENE, 32)
+	Pool.warm(&"tox_spout", TOX_SPOUT_SCENE, 24)
 
 	player = PLAYER_SCENE.instantiate()
 	entities.add_child(player)
@@ -73,16 +81,17 @@ func _ready() -> void:
 	hud.call("bind_player", player)
 
 	for i in INITIAL_DRIFTERS:
-		_spawn_drifter()
+		_spawn_enemy_key(&"drifter", DRIFTER_SCENE)
 
 func _process(delta: float) -> void:
 	if _run_over or get_tree().paused:
 		return
+	_elapsed += delta
 	_spawn_timer -= delta
 	if _spawn_timer <= 0.0:
 		_spawn_timer = SPAWN_INTERVAL
 		if _alive_enemy_count() < ENEMY_CAP:
-			_spawn_drifter()
+			_spawn_mixed()
 	_crate_timer -= delta
 	if _crate_timer <= 0.0:
 		_crate_timer = CRATE_INTERVAL
@@ -91,7 +100,6 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_action_pressed("ui_cancel"):
 		return
-	# Level-up open: abandon to hub (force close)
 	if level_up_ui and level_up_ui.has_method("is_open") and level_up_ui.is_open():
 		_abandon_to_hub()
 		return
@@ -118,7 +126,6 @@ func spawn_xp_gem(pos: Vector2, amount: int = 1) -> void:
 		pickups.add_child(gem)
 	var value := amount + _bonus_xp_on_gem
 	if gem.has_method("setup"):
-		# Prefer tier visuals; amount still applied via setup value path when bonus
 		if _bonus_xp_on_gem > 0:
 			gem.call("setup", value, pos)
 		else:
@@ -134,7 +141,6 @@ func vacuum_all_gems() -> void:
 			gem.call("magnet_pull", player)
 
 func _roll_trash_gem_tier() -> String:
-	# Weights from pickup_table trash column (approx)
 	var roll := randi() % 100
 	if roll < 8:
 		return "blue"
@@ -156,14 +162,27 @@ func _spawn_crate() -> void:
 	if crate.has_method("setup"):
 		crate.call("setup", pos, kind)
 
-func _spawn_drifter() -> void:
+func _spawn_mixed() -> void:
+	# Bulk Drifters; sprinkle Hounds; Tox Spouts after 1:00 on the edges.
+	var roll := randi() % 100
+	if _elapsed >= TOX_UNLOCK_S and roll < 18:
+		_spawn_enemy_key(&"tox_spout", TOX_SPOUT_SCENE)
+	elif roll < 32:
+		_spawn_enemy_key(&"hound", HOUND_SCENE)
+	else:
+		_spawn_enemy_key(&"drifter", DRIFTER_SCENE)
+
+func _spawn_enemy_key(key: StringName, scene: PackedScene) -> void:
 	if player == null or not is_instance_valid(player) or not player.alive:
 		return
 	var angle := randf() * TAU
-	var pos := player.global_position + Vector2(cos(angle), sin(angle)) * SPAWN_RADIUS
-	var enemy: Node = Pool.acquire(&"drifter", entities)
+	var radius := SPAWN_RADIUS
+	if key == &"tox_spout":
+		radius = SPAWN_RADIUS + 40.0
+	var pos := player.global_position + Vector2(cos(angle), sin(angle)) * radius
+	var enemy: Node = Pool.acquire(key, entities)
 	if enemy == null:
-		enemy = DRIFTER_SCENE.instantiate()
+		enemy = scene.instantiate()
 		entities.add_child(enemy)
 	if enemy.has_method("activate"):
 		enemy.call("activate", pos, player)
@@ -190,10 +209,21 @@ func _upgrade_starter_weapon() -> void:
 	if _weapon.has_method("set_level"):
 		_weapon.call("set_level", lv)
 
+func _offer_or_upgrade_pulse_halo() -> void:
+	if _halo == null or not is_instance_valid(_halo):
+		_halo = PULSE_HALO.instantiate()
+		player.add_child(_halo)
+		_halo.setup(player)
+	elif _halo.has_method("set_level"):
+		var lv := int(_halo.get("level")) if _halo.get("level") != null else 1
+		_halo.call("set_level", mini(lv + 1, 5))
+
 func _on_card_picked(card_id: String) -> void:
 	match card_id:
 		"shard_knives":
 			_upgrade_starter_weapon()
+		"pulse_halo":
+			_offer_or_upgrade_pulse_halo()
 		"move_speed":
 			player.set_meta("speed_mult", float(player.get_meta("speed_mult", 1.0)) + 0.12)
 		"magnet":

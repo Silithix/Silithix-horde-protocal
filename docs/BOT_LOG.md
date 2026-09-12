@@ -189,3 +189,33 @@
 **How to test:** Hub→Play → Esc pause → Resume; kite for crates; level-up can upgrade Shard Knives; gems show tier colors.
 
 **Leftover risk:** Crate bomb/nuke not wired. Meta gold not persisted. Only starter weapon upgrade path until Combat exposes more weapons to Systems.
+
+## 2026-09-12 — Combat — Milestone B slice (Hound / Tox Spout / Pulse Halo)
+
+**Shipped**
+- `scripts/enemies/Hound.gd` + `scenes/enemies/Hound.tscn` — fast melee seeker; data `hound`; pool `&"hound"`; `activate(pos, player)`; dual groups; `apply_damage`. Russet walker-placeholder. No child `POOL_KEY` (Godot 4.4) — `_pool_key()` only.
+- `scripts/enemies/ToxSpout.gd` + `scenes/enemies/ToxSpout.tscn` — stop at ~280px, 0.25s telegraph, fire purple bolt. data `tox_spout`; pool `&"tox_spout"`. Purple ColorRect placeholder.
+- `scripts/combat/ToxSpoutProjectile.gd` + `scenes/combat/ToxSpoutProjectile.tscn` — hits group `player` via `apply_damage` (fallback `Events.player_damaged`). Not pooled.
+- `scripts/combat/PulseHaloWeapon.gd` + `scenes/combat/PulseHaloWeapon.tscn` — `self_aura` ring; `setup(owner)` / `set_level`; ticks `apply_damage` in `96 * area_scale` px from `pulse_halo.json`.
+- `scripts/combat/MILESTONE_B_HOOKS.md` — Systems warm/spawn + Pulse Halo card/attach.
+
+**Did not touch:** `Run.gd`, `Player.gd`, `autoload/`, `project.godot`, `data/enemies/drifter.json`.
+
+**Systems hook (do this next)**
+1. `Pool.warm(&"hound", Hound.tscn, N)` and `Pool.warm(&"tox_spout", ToxSpout.tscn, N)`; `acquire` + `activate(pos, player)`
+2. Offer `pulse_halo` on level-up: first pick attach `PulseHaloWeapon.tscn` + `setup(player)`; later picks `set_level(n+1)`
+3. Keep groups: player=`"player"`, enemy=`"enemy"`+`"enemies"`, run=`"run_root"`
+
+**How to test:** Headless `godot --path /workspace/horde-protocol --quit-after 1` (no new script errors). After Systems wire: Hub→Play; Hounds close fast; Tox Spouts telegraph then spit; Pulse Halo ring ticks nearby trash.
+
+**Leftover risk:** No Habby/final art (ColorRect / russet placeholder). Tox bolt not pooled. Pulse Halo radius is Combat constant 96px (JSON has scale only). Spawn mix still Systems/Waves.
+
+**Handoff:** @Systems — see `scripts/combat/MILESTONE_B_HOOKS.md`. @Art — Hound russet + Tox purple ColorRect ready for sprite swap.
+
+## 2026-09-12 — Systems — Combat B mount wire
+
+**Files touched:**
+- `scenes/run/Run.gd` — warm/spawn `&"hound"` / `&"tox_spout"` (mix + Tox after 60s); Pulse Halo attach/upgrade
+- `scripts/meta/LevelUpUI.gd` — `pulse_halo` card
+
+**How to test:** Hub→Play — Drifters + Hounds; after ~1:00 Tox Spouts spit; level-up can take Pulse Halo (second weapon).

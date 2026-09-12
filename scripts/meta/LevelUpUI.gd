@@ -16,6 +16,7 @@ var _level_queue: Array[int] = []
 
 const DUMMY_CARDS := [
 	{"id": "shard_knives", "label": "Shard Knives\nUpgrade weapon"},
+	{"id": "pulse_halo", "label": "Pulse Halo\nDamaging ring"},
 	{"id": "move_speed", "label": "Boots\n+12% move speed"},
 	{"id": "magnet", "label": "Magnet Coil\n+40 magnet radius"},
 	{"id": "max_hp", "label": "Plating\n+20 max HP + heal"},
