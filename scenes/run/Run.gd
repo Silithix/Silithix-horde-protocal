@@ -26,6 +26,7 @@ var _run_over: bool = false
 var _bonus_xp_on_gem: int = 0
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	add_to_group("run_root")
 	add_to_group("run")
 	if has_node("UI/StubLabel"):
@@ -72,8 +73,15 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		Events.pause_toggled.emit(true)
-		Game.go_to_hub()
+		_abandon_to_hub()
+
+func _abandon_to_hub() -> void:
+	if level_up_ui and level_up_ui.has_method("force_close"):
+		level_up_ui.call("force_close")
+	else:
+		get_tree().paused = false
+		Events.pause_toggled.emit(false)
+	Game.go_to_hub()
 
 func spawn_xp_gem(pos: Vector2, amount: int = 1) -> void:
 	var gem: Node = Pool.acquire(&"xp_gem", pickups)
@@ -126,7 +134,11 @@ func _on_card_picked(card_id: String) -> void:
 
 func _on_player_died() -> void:
 	_run_over = true
+	if level_up_ui and level_up_ui.has_method("force_close"):
+		level_up_ui.call("force_close")
+	get_tree().paused = false
 	if hud and hud.has_method("stop"):
 		hud.call("stop")
-	await get_tree().create_timer(1.2).timeout
+	# ignore_pause so death delay still fires if something re-pauses
+	await get_tree().create_timer(1.2, true, false, true).timeout
 	Game.end_run(false)

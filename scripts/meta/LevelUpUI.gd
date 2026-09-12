@@ -1,5 +1,5 @@
 extends CanvasLayer
-## Pauses the tree and shows 3 dummy cards. Systems-owned Milestone A.
+## Pauses the tree and shows 3 cards. Queues multi-level ups. Systems-owned.
 
 signal card_picked(card_id: String)
 
@@ -12,6 +12,7 @@ signal card_picked(card_id: String)
 ]
 
 var _open: bool = false
+var _level_queue: Array[int] = []
 
 const DUMMY_CARDS := [
 	{"id": "move_speed", "label": "Boots\n+12% move speed"},
@@ -29,8 +30,30 @@ func _ready() -> void:
 		b.pressed.connect(_on_card_pressed.bind(i))
 
 func show_level_up(new_level: int) -> void:
-	if _open:
+	_level_queue.append(new_level)
+	if not _open:
+		_present_next()
+
+func force_close() -> void:
+	_level_queue.clear()
+	_open = false
+	visible = false
+	if get_tree():
+		get_tree().paused = false
+	Events.pause_toggled.emit(false)
+
+func _unhandled_input(event: InputEvent) -> void:
+	# Esc during level-up abandons to hub via Run; just ensure we don't eat picks.
+	pass
+
+func _present_next() -> void:
+	if _level_queue.is_empty():
+		_open = false
+		visible = false
+		get_tree().paused = false
+		Events.pause_toggled.emit(false)
 		return
+	var new_level: int = _level_queue.pop_front()
 	_open = true
 	title_label.text = "LEVEL %d — pick one" % new_level
 	var picks := DUMMY_CARDS.duplicate()
@@ -47,8 +70,11 @@ func _on_card_pressed(index: int) -> void:
 	if not _open:
 		return
 	var card_id := String(buttons[index].get_meta("card_id"))
-	_open = false
-	visible = false
-	get_tree().paused = false
-	Events.pause_toggled.emit(false)
 	card_picked.emit(card_id)
+	if _level_queue.is_empty():
+		_open = false
+		visible = false
+		get_tree().paused = false
+		Events.pause_toggled.emit(false)
+	else:
+		_present_next()

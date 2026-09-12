@@ -117,3 +117,11 @@
 
 **Leftover risk:** Need editor or emulator runtime before calling A playable from QA.
 
+
+## 2026-09-12 — Systems — QA-A1 / QA-A2 fixes
+
+**Files touched:**
+- `scripts/meta/LevelUpUI.gd` — queue multi-level cards; `force_close()` clears pause
+- `scenes/run/Run.gd` — `PROCESS_MODE_ALWAYS`; Esc → `_abandon_to_hub` unpauses; death path ignore_pause timer
+
+**How to test:** Level across 2+ levels on one gem → sequential card picks. Open level-up → Esc → Hub should not stay paused.
