@@ -176,3 +176,5 @@ func _try_contact_damage(node: Node) -> void:
 func _on_magnet_area_entered(area: Area2D) -> void:
 	if area.has_method("magnet_pull"):
 		area.call("magnet_pull", self)
+	if area.is_in_group("crate") and area.has_method("try_pickup"):
+		area.call("try_pickup", self)

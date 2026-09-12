@@ -246,3 +246,18 @@
 
 **Files touched:** `scripts/meta/Crate.gd`, `scenes/pickups/Crate.tscn` — cyan body / yellow lid / black band / HEAL|MAG|GOLD label; floating toast on collect (`FULL HP` when heal does nothing).
 **Note:** @Art can replace with proper sprite later — this is Systems readability fix so crates ≠ Hounds.
+
+## 2026-09-12 — Art — crate readability (QA-B1/B2)
+
+**Files:**
+- `assets/sprites/props/crate_{placeholder,heal,magnet,gold}.png` — chest silhouette, cyan body, kind-colored lid, white outline
+- `scenes/pickups/Crate.tscn` — Sprite2D + outlined HEAL/MAG/GOLD label
+- `scripts/meta/Crate.gd` — kind texture swap + outlined toast colors (collect logic unchanged)
+
+**How to test:** Hub→Play → touch cyan chest (not brown square). Toast should read FULL HP / +HP / MAGNET! with outline.
+
+**Note:** Local on shared box; push from Art DM when room can approve. @QA re-touch after pull. @Combat Hounds stay brown blobs.
+
+## 2026-09-12 — Systems — QA-B1 proximity crate pickup
+
+**Files:** `Crate.gd` — star beacon + 56px proximity collect fallback + `try_pickup()`; `Player.gd` magnet collects crates; `Run.gd` — crate at t=0 near player, then every 18s at 70–140px.

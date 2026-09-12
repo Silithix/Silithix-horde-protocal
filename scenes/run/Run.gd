@@ -17,7 +17,7 @@ const ENEMY_CAP := 28
 const SPAWN_RADIUS := 560.0
 const SPAWN_INTERVAL := 1.85
 const INITIAL_DRIFTERS := 2
-const CRATE_INTERVAL := 25.0
+const CRATE_INTERVAL := 18.0
 const TOX_UNLOCK_S := 60.0
 
 @onready var world: Node2D = $World
@@ -33,7 +33,7 @@ var hud: CanvasLayer
 var _weapon: Node = null
 var _halo: Node = null
 var _spawn_timer: float = 0.0
-var _crate_timer: float = 6.0
+var _crate_timer: float = 2.0
 var _elapsed: float = 0.0
 var _run_over: bool = false
 var _bonus_xp_on_gem: int = 0
@@ -82,6 +82,7 @@ func _ready() -> void:
 
 	for i in INITIAL_DRIFTERS:
 		_spawn_enemy_key(&"drifter", DRIFTER_SCENE)
+	_spawn_crate()
 
 func _process(delta: float) -> void:
 	if _run_over or get_tree().paused:
@@ -152,7 +153,7 @@ func _spawn_crate() -> void:
 	if player == null or not is_instance_valid(player) or not player.alive:
 		return
 	var angle := randf() * TAU
-	var pos := player.global_position + Vector2(cos(angle), sin(angle)) * randf_range(140.0, 260.0)
+	var pos := player.global_position + Vector2(cos(angle), sin(angle)) * randf_range(70.0, 140.0)
 	var kinds := ["heal_meat", "magnet", "gold_bag"]
 	var kind: String = kinds[randi() % kinds.size()]
 	var crate: Node = Pool.acquire(&"crate", pickups)

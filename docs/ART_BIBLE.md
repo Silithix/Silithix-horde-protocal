@@ -163,3 +163,7 @@ Art owns particles/sprites; Systems owns when they fire.
 ## 10. Out of scope for Art
 
 `project.godot`, gameplay scripts, weapon numbers, chapter JSON, APK export — other bots. Art never overwrites their files; coordinate via Chief of Staff + `docs/BOT_LOG.md`.
+
+## 11. Crate vs enemy (Milestone B)
+
+Crates are **chests** (cyan body, yellow/kind lid, dark latch, white outline) — never brown squares. Hounds/melee stay warm brown/orange blobs. Pickup toast uses outlined text; FULL HP still shows feedback.
