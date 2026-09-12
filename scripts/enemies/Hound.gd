@@ -59,10 +59,13 @@ func _seek_player() -> void:
 func _ensure_visual() -> void:
 	var spr := Sprite2D.new()
 	spr.name = "Visual"
-	spr.scale = Vector2(0.55, 0.65)
-	spr.modulate = Color(0.77, 0.38, 0.22)
-	var tex := load("res://assets/sprites/enemies/walker_placeholder.png")
+	spr.scale = Vector2(0.9, 0.9)
+	var tex = load("res://assets/sprites/enemies/hound_placeholder.png")
+	if tex == null:
+		tex = load("res://assets/sprites/enemies/walker_placeholder.png")
+		spr.modulate = Color(0.77, 0.38, 0.22)
 	if tex:
 		spr.texture = tex
 	add_child(spr)
 	visual = spr
+

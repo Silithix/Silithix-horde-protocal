@@ -1,21 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://tox_spout_enemy"]
+[gd_scene load_steps=5 format=3 uid="uid://plated_drifter_enemy"]
 
-[ext_resource type="Script" path="res://scripts/enemies/ToxSpout.gd" id="1_tox"]
-[ext_resource type="Texture2D" path="res://assets/sprites/enemies/tox_spout_placeholder.png" id="2_tex"]
+[ext_resource type="Script" path="res://scripts/enemies/PlatedDrifter.gd" id="1_plated"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/plated_drifter_placeholder.png" id="2_tex"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_body"]
-radius = 22.0
+radius = 28.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_contact"]
-radius = 24.0
+radius = 30.0
 
-[node name="ToxSpout" type="CharacterBody2D"]
+[node name="PlatedDrifter" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 1
-script = ExtResource("1_tox")
+script = ExtResource("1_plated")
 
 [node name="Visual" type="Sprite2D" parent="."]
-scale = Vector2(0.85, 0.85)
+scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
