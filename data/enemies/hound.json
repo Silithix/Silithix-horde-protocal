@@ -4,10 +4,10 @@
   "display_name": "Hound",
   "tier": "trash",
   "behavior": "seek_melee_fast",
-  "hp": 12,
-  "move_speed_px_s": 130,
-  "contact_damage": 8,
-  "contact_tick_s": 0.4,
+  "hp": 20,
+  "move_speed_px_s": 110,
+  "contact_damage": 6,
+  "contact_tick_s": 0.45,
   "attack_type": "contact",
   "projectile": null,
   "telegraph_s": 0,
@@ -18,6 +18,6 @@
   "red_aura": false,
   "chest_on_death": false,
   "color_hint": "russet",
-  "notes": "Fast melee chaser. Soft HP, high closing speed — punishes lazy circles. Introduce after Drifters so Rook learns to cut corners. Sprite placeholder: res://assets/sprites/enemies/hound.png",
+  "notes": "Fast melee chaser. QA-B4: HP 20 (two L1 knives), speed 110, contact 6/0.45s — still punishes lazy circles without one-shot/close swing. Introduce after Drifters. Sprite: res://assets/sprites/enemies/hound.png",
   "sprite": "res://assets/sprites/enemies/hound.png"
 }
