@@ -117,6 +117,13 @@ func set_magnet_radius(radius: float) -> void:
 	_update_magnet_shape()
 
 
+
+func _tick_contact_overlaps() -> void:
+	for area in hurtbox.get_overlapping_areas():
+		_try_contact_damage(area)
+	for body in hurtbox.get_overlapping_bodies():
+		_try_contact_damage(body)
+
 func _xp_curve(lvl: int) -> int:
 	return 5 + (lvl - 1) * 3
 
