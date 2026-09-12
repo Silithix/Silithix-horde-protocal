@@ -134,3 +134,12 @@
 
 **Notes:** Code-reviewed `2dd6d96` — queue + force_close/unpause look correct. A1/A2 stay Fixed pending runtime. A3 watch remains. APK NO-GO.
 
+## 2026-09-12 — Combat — fix Drifter POOL_KEY shadow
+
+**Files touched:** `scripts/enemies/Drifter.gd`
+
+**Change:** Removed child `const POOL_KEY` (Godot 4.4 rejects duplicate const vs EnemyBase). `_pool_key()` still returns `&"drifter"`.
+
+**How to test:** Headless Godot 4.4.1 import — no Drifter script error.
+
+**Leftover risk:** Push pending — fix is on local disk; commit/push from 1:1 if room can't publish.

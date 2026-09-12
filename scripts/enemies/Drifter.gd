@@ -2,7 +2,6 @@ extends EnemyBase
 class_name Drifter
 ## Trash melee seeker — drop-in upgrade for TempSeeker (pool key "drifter").
 
-const POOL_KEY := &"drifter"
 const DEFAULT_DATA_ID := "drifter"
 
 @onready var visual: Node2D = get_node_or_null("Visual") as Node2D
@@ -16,7 +15,7 @@ func _ready() -> void:
 
 
 func _pool_key() -> StringName:
-	return POOL_KEY
+	return &"drifter"
 
 
 ## Public API: load data + bind seek target (player).
