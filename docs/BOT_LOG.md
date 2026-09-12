@@ -219,3 +219,12 @@
 - `scripts/meta/LevelUpUI.gd` — `pulse_halo` card
 
 **How to test:** Hub→Play — Drifters + Hounds; after ~1:00 Tox Spouts spit; level-up can take Pulse Halo (second weapon).
+
+## 2026-09-12 — QA — Milestone B slice 1 smoke
+
+**Files touched:** `docs/KNOWN_ISSUES.md`, `build/qa-smoke-b1/*`, this log.
+
+**How to test:** Hub→Play → Esc Pause Resume/Hub → kite to level-up (Shard Knives card) → Esc during cards.
+
+**Results:** All Systems B1 checklist PASS. Knife upgrade card picked. Crate seen not collected (QA-B1). No crash. Screenshots in `build/qa-smoke-b1/`. APK still NO-GO per Lead.
+
