@@ -8,7 +8,7 @@ Log failures here before any APK go/no-go. Fix blockers. Ship with at most minor
 | QA-A2 | Major* | Pause / Hub | `Run` Esc → `go_to_hub` never clears `get_tree().paused`. Softlock if tree is paused (e.g. abandon during level-up once Esc is wired under pause) | Level-up open + Esc/back if input reaches Run | Fixed 2026-09-12 — force_close + unpause before hub; Run PROCESS_MODE_ALWAYS | Systems |
 | QA-A3 | Perf note | Run | `_alive_enemy_count` uses `get_nodes_in_group("enemy")` on spawn tick — OK for A; fail Milestone D if left in hot path | 12-min soak | Watch | Systems |
 
-\*Major only if Esc/back can fire while paused. Currently LevelUpUI is `PROCESS_MODE_ALWAYS` and Run is not — verify on device.
+\*Was major if Esc fired while paused. Mitigated in `2dd6d96` (Run always + force_close). Still needs Godot Hub→Play confirmation.
 
 ## Severity
 - **Blocker** — crash, softlock, data wipe, install fail → no ship
@@ -23,4 +23,5 @@ Log failures here before any APK go/no-go. Fix blockers. Ship with at most minor
 - JSON: all `data/**/*.json` parse OK
 - Scenes: Boot/Hub/Run/Player/Drifter/ShardKnives/LevelUpUI/RunHud present
 - Milestone A runtime Hub→Play: **unverified** (need editor/device)
+- QA-A1/A2: code review of `2dd6d96` — looks closed; runtime still pending
 - APK gate: **NO-GO** until D/E

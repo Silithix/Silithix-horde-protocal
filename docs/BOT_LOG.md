@@ -125,3 +125,12 @@
 - `scenes/run/Run.gd` — `PROCESS_MODE_ALWAYS`; Esc → `_abandon_to_hub` unpauses; death path ignore_pause timer
 
 **How to test:** Level across 2+ levels on one gem → sequential card picks. Open level-up → Esc → Hub should not stay paused.
+
+## 2026-09-12 — QA — recheck A1/A2
+
+**Files touched:** `docs/KNOWN_ISSUES.md` (footnote + audit).
+
+**How to test:** Still need Godot 4.4 Hub→Play.
+
+**Notes:** Code-reviewed `2dd6d96` — queue + force_close/unpause look correct. A1/A2 stay Fixed pending runtime. A3 watch remains. APK NO-GO.
+
