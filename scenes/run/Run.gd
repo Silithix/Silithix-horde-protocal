@@ -1,17 +1,20 @@
 extends Node2D
-## Run root. Systems owns player/camera/XP/pooling/damage path here.
+## Run root. Systems owns player/camera/XP/pooling/pause/crates here.
 
 const PLAYER_SCENE := preload("res://scenes/player/Player.tscn")
 const XP_GEM_SCENE := preload("res://scenes/pickups/XpGem.tscn")
+const CRATE_SCENE := preload("res://scenes/pickups/Crate.tscn")
 const DRIFTER_SCENE := preload("res://scenes/enemies/Drifter.tscn")
 const SHARD_KNIVES := preload("res://scenes/combat/ShardKnivesWeapon.tscn")
 const LEVEL_UP_UI := preload("res://scenes/ui/LevelUpUI.tscn")
+const PAUSE_MENU := preload("res://scenes/ui/PauseMenu.tscn")
 const HUD_SCENE := preload("res://scenes/ui/RunHud.tscn")
 
 const ENEMY_CAP := 24
 const SPAWN_RADIUS := 560.0
 const SPAWN_INTERVAL := 2.0
 const INITIAL_DRIFTERS := 2
+const CRATE_INTERVAL := 25.0
 
 @onready var world: Node2D = $World
 @onready var entities: Node2D = $Entities
@@ -21,8 +24,11 @@ const INITIAL_DRIFTERS := 2
 var player: CharacterBody2D
 var camera: Camera2D
 var level_up_ui: CanvasLayer
+var pause_menu: CanvasLayer
 var hud: CanvasLayer
+var _weapon: Node = null
 var _spawn_timer: float = 0.0
+var _crate_timer: float = 12.0
 var _run_over: bool = false
 var _bonus_xp_on_gem: int = 0
 
@@ -34,6 +40,7 @@ func _ready() -> void:
 		$UI/StubLabel.queue_free()
 
 	Pool.warm(&"xp_gem", XP_GEM_SCENE, 64)
+	Pool.warm(&"crate", CRATE_SCENE, 8)
 	Pool.warm(&"drifter", DRIFTER_SCENE, 64)
 
 	player = PLAYER_SCENE.instantiate()
@@ -42,9 +49,9 @@ func _ready() -> void:
 	player.died.connect(_on_player_died)
 	player.leveled_up.connect(_on_player_leveled_up)
 
-	var wpn := SHARD_KNIVES.instantiate()
-	player.add_child(wpn)
-	wpn.setup(player)
+	_weapon = SHARD_KNIVES.instantiate()
+	player.add_child(_weapon)
+	_weapon.setup(player)
 
 	camera = Camera2D.new()
 	camera.set_script(load("res://scripts/player/FollowCamera.gd"))
@@ -55,6 +62,11 @@ func _ready() -> void:
 	level_up_ui = LEVEL_UP_UI.instantiate()
 	add_child(level_up_ui)
 	level_up_ui.card_picked.connect(_on_card_picked)
+
+	pause_menu = PAUSE_MENU.instantiate()
+	add_child(pause_menu)
+	pause_menu.resume_pressed.connect(func(): pass)
+	pause_menu.hub_pressed.connect(_abandon_to_hub)
 
 	hud = HUD_SCENE.instantiate()
 	add_child(hud)
@@ -71,29 +83,78 @@ func _process(delta: float) -> void:
 		_spawn_timer = SPAWN_INTERVAL
 		if _alive_enemy_count() < ENEMY_CAP:
 			_spawn_drifter()
+	_crate_timer -= delta
+	if _crate_timer <= 0.0:
+		_crate_timer = CRATE_INTERVAL
+		_spawn_crate()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
+	if not event.is_action_pressed("ui_cancel"):
+		return
+	# Level-up open: abandon to hub (force close)
+	if level_up_ui and level_up_ui.has_method("is_open") and level_up_ui.is_open():
 		_abandon_to_hub()
+		return
+	if pause_menu and pause_menu.has_method("is_open") and pause_menu.is_open():
+		pause_menu.close_menu(true)
+		return
+	if pause_menu:
+		pause_menu.open_menu()
 
 func _abandon_to_hub() -> void:
 	if level_up_ui and level_up_ui.has_method("force_close"):
 		level_up_ui.call("force_close")
-	else:
-		get_tree().paused = false
-		Events.pause_toggled.emit(false)
+	if pause_menu and pause_menu.has_method("close_menu"):
+		pause_menu.call("close_menu", false)
+	get_tree().paused = false
+	Events.pause_toggled.emit(false)
 	Game.go_to_hub()
 
 func spawn_xp_gem(pos: Vector2, amount: int = 1) -> void:
+	var tier := _roll_trash_gem_tier()
 	var gem: Node = Pool.acquire(&"xp_gem", pickups)
 	if gem == null:
 		gem = XP_GEM_SCENE.instantiate()
 		pickups.add_child(gem)
 	var value := amount + _bonus_xp_on_gem
 	if gem.has_method("setup"):
-		gem.call("setup", value, pos)
+		# Prefer tier visuals; amount still applied via setup value path when bonus
+		if _bonus_xp_on_gem > 0:
+			gem.call("setup", value, pos)
+		else:
+			gem.call("setup", 0, pos, tier)
 	else:
 		gem.global_position = pos
+
+func vacuum_all_gems() -> void:
+	if player == null:
+		return
+	for gem in get_tree().get_nodes_in_group("xp_gem"):
+		if gem.has_method("magnet_pull") and gem.visible:
+			gem.call("magnet_pull", player)
+
+func _roll_trash_gem_tier() -> String:
+	# Weights from pickup_table trash column (approx)
+	var roll := randi() % 100
+	if roll < 8:
+		return "blue"
+	if roll < 28:
+		return "large_green"
+	return "small_green"
+
+func _spawn_crate() -> void:
+	if player == null or not is_instance_valid(player) or not player.alive:
+		return
+	var angle := randf() * TAU
+	var pos := player.global_position + Vector2(cos(angle), sin(angle)) * randf_range(220.0, 420.0)
+	var kinds := ["heal_meat", "magnet", "gold_bag"]
+	var kind: String = kinds[randi() % kinds.size()]
+	var crate: Node = Pool.acquire(&"crate", pickups)
+	if crate == null:
+		crate = CRATE_SCENE.instantiate()
+		pickups.add_child(crate)
+	if crate.has_method("setup"):
+		crate.call("setup", pos, kind)
 
 func _spawn_drifter() -> void:
 	if player == null or not is_instance_valid(player) or not player.alive:
@@ -117,10 +178,22 @@ func _alive_enemy_count() -> int:
 	return n
 
 func _on_player_leveled_up(new_level: int) -> void:
+	if pause_menu and pause_menu.has_method("close_menu"):
+		pause_menu.call("close_menu", false)
 	level_up_ui.show_level_up(new_level)
+
+func _upgrade_starter_weapon() -> void:
+	if _weapon == null or not is_instance_valid(_weapon):
+		return
+	var lv := int(_weapon.get("level")) if _weapon.get("level") != null else 1
+	lv = mini(lv + 1, 5)
+	if _weapon.has_method("set_level"):
+		_weapon.call("set_level", lv)
 
 func _on_card_picked(card_id: String) -> void:
 	match card_id:
+		"shard_knives":
+			_upgrade_starter_weapon()
 		"move_speed":
 			player.set_meta("speed_mult", float(player.get_meta("speed_mult", 1.0)) + 0.12)
 		"magnet":
@@ -137,9 +210,10 @@ func _on_player_died() -> void:
 	_run_over = true
 	if level_up_ui and level_up_ui.has_method("force_close"):
 		level_up_ui.call("force_close")
+	if pause_menu and pause_menu.has_method("close_menu"):
+		pause_menu.call("close_menu", false)
 	get_tree().paused = false
 	if hud and hud.has_method("stop"):
 		hud.call("stop")
-	# ignore_pause so death delay still fires if something re-pauses
 	await get_tree().create_timer(1.2, true, false, true).timeout
 	Game.end_run(false)

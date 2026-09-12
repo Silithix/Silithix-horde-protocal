@@ -15,6 +15,7 @@ var _open: bool = false
 var _level_queue: Array[int] = []
 
 const DUMMY_CARDS := [
+	{"id": "shard_knives", "label": "Shard Knives\nUpgrade weapon"},
 	{"id": "move_speed", "label": "Boots\n+12% move speed"},
 	{"id": "magnet", "label": "Magnet Coil\n+40 magnet radius"},
 	{"id": "max_hp", "label": "Plating\n+20 max HP + heal"},
@@ -33,6 +34,9 @@ func show_level_up(new_level: int) -> void:
 	_level_queue.append(new_level)
 	if not _open:
 		_present_next()
+
+func is_open() -> bool:
+	return _open
 
 func force_close() -> void:
 	_level_queue.clear()

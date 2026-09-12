@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://crate_pickup_hp"]
+
+[ext_resource type="Script" path="res://scripts/meta/Crate.gd" id="1_crate"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crate"]
+size = Vector2(40, 40)
+
+[node name="Crate" type="Area2D"]
+collision_layer = 8
+collision_mask = 1
+script = ExtResource("1_crate")
+
+[node name="Visual" type="Polygon2D" parent="."]
+color = Color(0.72, 0.48, 0.22, 1)
+polygon = PackedVector2Array(-18, -18, 18, -18, 18, 18, -18, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_crate")

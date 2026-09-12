@@ -176,3 +176,16 @@
 
 **Handoff:** Team clear to polish toward B; @Combat push Drifter/BALANCE if still local-only so main matches the smoked tree.
 
+
+## 2026-09-12 — Systems — Milestone B slice 1
+
+**Files touched:**
+- `scripts/meta/PauseMenu.gd` + `scenes/ui/PauseMenu.tscn` — Esc opens Resume/Hub (level-up Esc still abandons)
+- `scripts/meta/XpGem.gd` — tier visuals (small/large green, blue, gold)
+- `scripts/meta/Crate.gd` + `scenes/pickups/Crate.tscn` — heal/magnet/gold_bag crates on a timer
+- `scripts/meta/LevelUpUI.gd` — Shard Knives upgrade card + `is_open()`
+- `scenes/run/Run.gd` — pause wire, crate spawn, gem tiers, vacuum_all_gems, weapon set_level
+
+**How to test:** Hub→Play → Esc pause → Resume; kite for crates; level-up can upgrade Shard Knives; gems show tier colors.
+
+**Leftover risk:** Crate bomb/nuke not wired. Meta gold not persisted. Only starter weapon upgrade path until Combat exposes more weapons to Systems.
