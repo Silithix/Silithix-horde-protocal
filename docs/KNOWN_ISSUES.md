@@ -10,6 +10,7 @@ Log failures here before any APK go/no-go. Fix blockers. Ship with at most minor
 | QA-A4 | Major | Balance / A gate | Contact melt before level-up (~8s TTK) | Hub→Play kite | Fixed 2026-09-12 — Systems `c624929` + Combat contact 5/0.55; re-smoke PASS (~1:06, cards+unpause) | Combat / Systems |
 | QA-B1 | Major | Crates | Collect unverified | Walk into crate | Fixed `69f5508` — proximity + beacon; GUI toast `+GOLD (FULL HP)` PASS | Systems |
 | QA-B2 | Minor | Feedback | Heal at full HP looks like no-op | Collect heal at max HP | Fixed `69f5508` — toast includes FULL HP | Systems / Art |
+| QA-B4 | Balance | Hound | L1 Shard Knife one-shots Hound; Hound closes much faster than Drifter — swingy mean | Fight one Hound with knives only | Open / Combat call | Combat |
 | QA-A5 | Minor | Audio | ALSA missing on QA box → dummy driver | Launch Godot here | Accepted / env | QA |
 
 ## Severity

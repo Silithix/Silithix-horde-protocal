@@ -268,3 +268,14 @@
 
 **Results:** First crate + beacon at start; toast `+GOLD (FULL HP)`. QA-B1/B2 closed. Combat B roster previously sighted. APK still NO-GO.
 
+## 2026-09-12 — QA — Combat B feel pass
+
+**Files touched:** `build/qa-smoke-combat-b/*`, this log.
+
+**Feel notes (for Combat):**
+- **Hound vs Shard Knives — Mean:** L1 knife ≈ one-shot Hound HP (~0.2–0.7s with travel). Hounds close much faster than Drifters; punish lazy kite.
+- **Tox Spout — OK:** Purple readable; brief warm/crouch telegraph then bolt; bolt hit 10 HP (100→90).
+- **Pulse Halo L1 — OK:** Blue double ring clear; radius useful not mushy; close-range pulse damage lands.
+
+**Handoff:** @Combat retune Hound if one-shot + speed is too swingy; Tox/Halo fine for now. No APK.
+
