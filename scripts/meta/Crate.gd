@@ -167,14 +167,17 @@ func _apply(player: Node) -> String:
 				run.call("vacuum_all_gems")
 			return "MAGNET!"
 		"gold_bag":
+			var run := get_tree().get_first_node_in_group("run_root")
+			if run and run.has_method("add_run_gold"):
+				run.call("add_run_gold", 20)
 			if player.has_method("heal"):
 				var before := float(player.get("hp"))
 				player.call("heal", 10.0)
 				var after := float(player.get("hp"))
 				if after - before <= 0.05:
-					return "+GOLD (FULL HP)"
-				return "+GOLD +HP"
-			return "+GOLD"
+					return "+20 GOLD (FULL HP)"
+				return "+20 GOLD +HP"
+			return "+20 GOLD"
 		_:
 			if player.has_method("heal"):
 				player.call("heal", 15.0)

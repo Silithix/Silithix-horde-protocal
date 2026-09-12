@@ -15,6 +15,7 @@ const LEVEL_UP_UI := preload("res://scenes/ui/LevelUpUI.tscn")
 const PAUSE_MENU := preload("res://scenes/ui/PauseMenu.tscn")
 const HUD_SCENE := preload("res://scenes/ui/RunHud.tscn")
 const ChapterClockScript := preload("res://scripts/meta/ChapterClock.gd")
+const RESULTS_SCENE := preload("res://scenes/ui/ResultsScreen.tscn")
 
 const ENEMY_CAP := 28
 const SPAWN_RADIUS := 560.0
@@ -45,6 +46,9 @@ var _run_over: bool = false
 var _bonus_xp_on_gem: int = 0
 var _owned_weapons: Array[String] = ["shard_knives"]
 var _chapter: Node = null
+var _results: CanvasLayer = null
+var _run_gold: int = 0
+var _run_kills: int = 0
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -83,6 +87,10 @@ func _ready() -> void:
 	level_up_ui = LEVEL_UP_UI.instantiate()
 	add_child(level_up_ui)
 	level_up_ui.card_picked.connect(_on_card_picked)
+	_results = RESULTS_SCENE.instantiate()
+	add_child(_results)
+	_results.continue_pressed.connect(_on_results_continue)
+	Events.enemy_killed.connect(_on_enemy_killed)
 
 	pause_menu = PAUSE_MENU.instantiate()
 	add_child(pause_menu)
@@ -154,6 +162,9 @@ func spawn_xp_gem(pos: Vector2, amount: int = 1) -> void:
 			gem.call("setup", 0, pos, tier)
 	else:
 		gem.global_position = pos
+
+func add_run_gold(amount: int) -> void:
+	_run_gold += maxi(0, amount)
 
 func vacuum_all_gems() -> void:
 	if player == null:
@@ -301,6 +312,47 @@ func _on_card_picked(card_id: String) -> void:
 		"heal":
 			player.heal(30.0)
 
+func _on_enemy_killed(_enemy: Node, gold: int) -> void:
+	_run_kills += 1
+	_run_gold += maxi(0, gold)
+
+func _persist_last_run(won: bool) -> void:
+	var level := 1
+	if player and is_instance_valid(player):
+		level = int(player.get("level")) if player.get("level") != null else 1
+	var payload := {
+		"won": won,
+		"time_s": int(_elapsed),
+		"level": level,
+		"gold": _run_gold,
+		"kills": _run_kills,
+		"weapons": _owned_weapons.duplicate(),
+	}
+	Save.data["last_run"] = payload
+	var meta: Dictionary = Save.data.get("meta", {})
+	meta["gold"] = int(meta.get("gold", 0)) + _run_gold
+	Save.data["meta"] = meta
+	Save.save_game()
+
+func _show_results(won: bool) -> void:
+	_persist_last_run(won)
+	var level := 1
+	if player and is_instance_valid(player):
+		level = int(player.get("level")) if player.get("level") != null else 1
+	if _results:
+		_results.show_results({
+			"won": won,
+			"time_s": int(_elapsed),
+			"level": level,
+			"gold": _run_gold,
+			"kills": _run_kills,
+		})
+	else:
+		Game.end_run(won)
+
+func _on_results_continue() -> void:
+	Game.go_to_hub()
+
 func _on_player_died() -> void:
 	_run_over = true
 	if _chapter and _chapter.has_method("stop"):
@@ -313,4 +365,4 @@ func _on_player_died() -> void:
 	if hud and hud.has_method("stop"):
 		hud.call("stop")
 	await get_tree().create_timer(1.2, true, false, true).timeout
-	Game.end_run(false)
+	_show_results(false)

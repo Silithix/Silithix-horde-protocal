@@ -361,3 +361,7 @@
 
 **Shipped:** Run soft-loads Orbit/Plated if scenes exist; Plated in mix after 90s; level-up offers Orbit Blades under 6-cap.
 **Note:** Combat pack may still be pending on `main` — runtime `ResourceLoader.exists` keeps clones safe.
+
+## 2026-09-12 — Systems — B slice 3 results + run gold
+
+**Shipped:** `ResultsScreen` on death (time/level/gold/kills → Continue → Hub); `Save.last_run` + meta gold; kill gold; gold crates +20. Did not touch `Game.gd`.
